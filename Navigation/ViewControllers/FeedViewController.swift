@@ -163,7 +163,7 @@ final class FeedViewController: UIViewController {
       let resultsMessage = "Position \(position) = \(current)"
       switch UIApplication.shared.applicationState {
       case .active:
-        print(resultsMessage)
+        print("active")
       case .background:
         print("App is backgrounded. Next number = \(resultsMessage)")
         print("Background time remaining = \(UIApplication.shared.backgroundTimeRemaining) seconds")
