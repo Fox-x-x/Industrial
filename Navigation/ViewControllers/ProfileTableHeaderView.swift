@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // Если вы выполнили прошлое задание не в отдельном классе-наследнике UIView, то нужно перенести всю верстку в отдельный файл 'ProfileTableHederView.swift', в котором должен быть класс-наследник UIView с именем 'ProfileHeaderView'.
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
@@ -131,44 +132,38 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             backgroundColor = .systemGray
         }
         
-        // добавляем сабвью
-        addSubviews(fullNameLabel, statusLabel, statusTextField, setStatusButton, avatarImageView)
+        let views = [fullNameLabel, statusLabel, statusTextField, setStatusButton, avatarImageView]
+        views.forEach { addSubview($0) }
         
-        // задаем констрейнты
-        let constraints = [
-            
-            // аватар
-            avatarImageView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            avatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            avatarImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3),
-            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
-            
-            // name Label
-            fullNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 27),
-            fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
-            fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            
-            // статус Label
-            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 32),
-            statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
-            statusLabel.trailingAnchor.constraint(equalTo: fullNameLabel.trailingAnchor),
-            
-            // статус statusTextField
-            statusTextField.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 8),
-            statusTextField.leadingAnchor.constraint(equalTo: statusLabel.leadingAnchor),
-            statusTextField.trailingAnchor.constraint(equalTo: statusLabel.trailingAnchor),
-            statusTextField.heightAnchor.constraint(equalToConstant: 40),
-            
-            // setStatusButton
-            setStatusButton.topAnchor.constraint(equalTo: statusTextField.bottomAnchor, constant: 16),
-            setStatusButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            setStatusButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            setStatusButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
-            setStatusButton.heightAnchor.constraint(equalToConstant: 44),
-            
-        ]
+        avatarImageView.snp.makeConstraints { (make) in
+            make.top.leading.equalToSuperview().offset(16)
+            make.width.equalToSuperview().multipliedBy(0.3)
+            make.height.equalTo(avatarImageView.snp.width)
+        }
         
-        NSLayoutConstraint.activate(constraints)
+        fullNameLabel.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(27)
+            make.leading.equalTo(avatarImageView.snp.trailing).offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+        
+        statusLabel.snp.makeConstraints { (make) in
+            make.top.equalTo(fullNameLabel.snp.bottom).offset(32)
+            make.leading.trailing.equalTo(fullNameLabel)
+        }
+        
+        statusTextField.snp.makeConstraints { (make) in
+            make.top.equalTo(statusLabel.snp.bottom).offset(8)
+            make.leading.trailing.equalTo(statusLabel)
+            make.height.equalTo(40)
+        }
+        
+        setStatusButton.snp.makeConstraints { (make) in
+            make.top.equalTo(statusTextField.snp.bottom).offset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.bottom.equalToSuperview().offset(-16)
+            make.height.equalTo(44)
+        }
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(avatarTapped))
         avatarImageView.addGestureRecognizer(tapGestureRecognizer)

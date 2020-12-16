@@ -7,10 +7,9 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileViewController: UIViewController {
-    
-    private var globalHeader: ProfileTableHeaderView?
     
     // tableView
     // Добавьте экземпляр класса UITableView и закрепите его к краям экрана.
@@ -41,16 +40,11 @@ class ProfileViewController: UIViewController {
     // отдельная функция для добавления view и настройки layout
     private func setupLayout() {
         
-        view.addSubviewWithAutolayout(tableView)
+        view.addSubview(tableView)
         
-        let constraints = [
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        tableView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
     }
     
     // получает 4 фото (или сколько есть) из массива с фото для ячейки, которая должна содержать 4 фото
