@@ -13,7 +13,6 @@ import SnapKit
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private var statusText: String?
-    private let profileViewController = ProfileViewController()
     
     lazy var avatarImageView: UIImageView = {
         let image = UIImageView()
