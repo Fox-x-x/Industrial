@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-12-19T14:20:36.682Z" agent="5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="3ynFaG7yoA1ZVORffvXm" version="14.1.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-12-19T14:25:34.739Z" agent="5.0 (Macintosh; Intel Mac OS X 11_0_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36" etag="KJVL3RdV65Aj4MdsNw14" version="14.1.1" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="1186" dy="679" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -72,6 +72,12 @@
             <mxPoint x="500" y="300" as="sourcePoint" />
             <mxPoint x="410" y="260" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="IdmwQZNdr4udqNdCdOgX-18" value="Text" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="240" width="40" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="IdmwQZNdr4udqNdCdOgX-19" value="&lt;b&gt;Карта зависимостей текущего рабочего проекта.&lt;/b&gt;&lt;br&gt;Не стал включать&amp;nbsp;&lt;i&gt;LogInViewController&lt;/i&gt; и всю ветку от &lt;i&gt;FeedViewController&lt;/i&gt;, т.к. по факту они ничего особо не делают и по существу не участвуют в проекте." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="80" width="540" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
