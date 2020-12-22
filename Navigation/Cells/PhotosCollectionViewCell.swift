@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // Создайте PhotosCollectionViewCell.swift с одноименным классом внутри.
 final class PhotosCollectionViewCell: UICollectionViewCell {
@@ -40,17 +41,12 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
 
 // добавляем photoImageView в корневую contentView и задаем констрейнты
 private extension PhotosCollectionViewCell {
+    
     func setupLayout() {
-        contentView.addSubviewWithAutolayout(photoImageView)
+        contentView.addSubview(photoImageView)
         
-        let constraints = [
-            photoImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            photoImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            photoImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            photoImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-            
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        photoImageView.snp.makeConstraints { (make) in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
     }
 }

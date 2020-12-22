@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // Создайте PhotosViewController.swift c одноименным классом внутри.
 class PhotosViewController: UIViewController {
@@ -95,16 +96,11 @@ private extension PhotosViewController {
     
     func setupLayout() {
         
-        view.addSubviewWithAutolayout(collectionView)
+        view.addSubview(collectionView)
         
-        let constraints = [
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        collectionView.snp.makeConstraints { (make) in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
         
     }
     

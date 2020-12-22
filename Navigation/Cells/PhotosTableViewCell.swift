@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 // Создайте PhotosTableViewCell.swift c одноименным классом внутри.
 class PhotosTableViewCell: UITableViewCell {
@@ -108,45 +109,39 @@ class PhotosTableViewCell: UITableViewCell {
 private extension PhotosTableViewCell {
     func setupLayout() {
         
-        contentView.addSubviews(photosLabel, arrowImage, firstPhoto, secondPhoto, thirdPhoto, fourthPhoto)
+        let views = [photosLabel, arrowImage, firstPhoto, secondPhoto, thirdPhoto, fourthPhoto]
+        views.forEach { contentView.addSubview($0) }
         
-        let constraints = [
-            
-            photosLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            photosLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            
-            arrowImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            arrowImage.centerYAnchor.constraint(equalTo: photosLabel.centerYAnchor),
-            arrowImage.heightAnchor.constraint(equalToConstant: 24),
-            arrowImage.widthAnchor.constraint(equalToConstant: 30),
-            
-            firstPhoto.topAnchor.constraint(equalTo: photosLabel.bottomAnchor, constant: 12),
-            firstPhoto.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 12),
-            firstPhoto.widthAnchor.constraint(equalToConstant: photoWidth),
-            firstPhoto.heightAnchor.constraint(equalTo: firstPhoto.widthAnchor),
-            firstPhoto.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12),
-            
-            secondPhoto.topAnchor.constraint(equalTo: firstPhoto.topAnchor),
-            secondPhoto.leadingAnchor.constraint(equalTo: firstPhoto.trailingAnchor, constant: inset),
-            secondPhoto.widthAnchor.constraint(equalTo: firstPhoto.widthAnchor),
-            secondPhoto.heightAnchor.constraint(equalTo: firstPhoto.heightAnchor),
-            secondPhoto.bottomAnchor.constraint(equalTo: firstPhoto.bottomAnchor),
-            
-            thirdPhoto.topAnchor.constraint(equalTo: firstPhoto.topAnchor),
-            thirdPhoto.leadingAnchor.constraint(equalTo: secondPhoto.trailingAnchor, constant: inset),
-            thirdPhoto.widthAnchor.constraint(equalTo: firstPhoto.widthAnchor),
-            thirdPhoto.heightAnchor.constraint(equalTo: firstPhoto.heightAnchor),
-            thirdPhoto.bottomAnchor.constraint(equalTo: firstPhoto.bottomAnchor),
-            
-            fourthPhoto.topAnchor.constraint(equalTo: firstPhoto.topAnchor),
-            fourthPhoto.leadingAnchor.constraint(equalTo: thirdPhoto.trailingAnchor, constant: inset),
-            fourthPhoto.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            fourthPhoto.widthAnchor.constraint(equalTo: firstPhoto.widthAnchor),
-            fourthPhoto.heightAnchor.constraint(equalTo: firstPhoto.heightAnchor),
-            fourthPhoto.bottomAnchor.constraint(equalTo: firstPhoto.bottomAnchor)
-        ]
-        
-        NSLayoutConstraint.activate(constraints)
+        photosLabel.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(12)
+            make.leading.equalToSuperview().offset(12)
+        }
+        arrowImage.snp.makeConstraints { (make) in
+            make.trailing.equalToSuperview().offset(-12)
+            make.centerY.equalTo(photosLabel.snp.centerY)
+            make.height.equalTo(24)
+            make.width.equalTo(30)
+        }
+        firstPhoto.snp.makeConstraints { (make) in
+            make.top.equalTo(photosLabel.snp.bottom).offset(12)
+            make.leading.equalToSuperview().offset(12)
+            make.width.equalTo(photoWidth)
+            make.height.equalTo(firstPhoto.snp.width)
+            make.bottom.equalToSuperview().offset(-12)
+        }
+        secondPhoto.snp.makeConstraints { (make) in
+            make.top.width.height.bottom.equalTo(firstPhoto)
+            make.leading.equalTo(firstPhoto.snp.trailing).offset(inset)
+        }
+        thirdPhoto.snp.makeConstraints { (make) in
+            make.top.width.height.bottom.equalTo(firstPhoto)
+            make.leading.equalTo(secondPhoto.snp.trailing).offset(inset)
+        }
+        fourthPhoto.snp.makeConstraints { (make) in
+            make.top.width.height.bottom.equalTo(firstPhoto)
+            make.leading.equalTo(thirdPhoto.snp.trailing).offset(inset)
+            make.trailing.equalToSuperview().offset(-12)
+        }
         
     }
     
