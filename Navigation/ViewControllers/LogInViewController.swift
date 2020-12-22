@@ -37,11 +37,7 @@ class LogInViewController: UIViewController {
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.layer.borderWidth = 0.5
         view.layer.cornerRadius = 10
-        if #available(iOS 13.0, *) {
-            view.backgroundColor = .systemGray6
-        } else {
-            view.backgroundColor = .systemGray
-        }
+        view.backgroundColor = .systemGray6
         return view
     }()
     

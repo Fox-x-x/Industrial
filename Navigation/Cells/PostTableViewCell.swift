@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import SnapKit
 
+// Создайте файл 'PostTableViewCell.swift' и добавьте в него класс UITableViewCell с именем 'PostTableViewCell'.
 class PostTableViewCell: UITableViewCell {
     
     var post: Post? {
@@ -23,7 +23,9 @@ class PostTableViewCell: UITableViewCell {
             
         }
     }
-
+    
+    // здесь создаем все элементы интерфейса поста: картинка, текст, лайки, итд.
+    // имя автора
     private let authorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -32,6 +34,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
+    // текст поста
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -40,6 +43,7 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
+    // картинка поста
     private let postImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -47,6 +51,7 @@ class PostTableViewCell: UITableViewCell {
         return image
     }()
     
+    // лайки
     private let likesLabel: UILabel = {
         let likes = UILabel()
         likes.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -54,6 +59,7 @@ class PostTableViewCell: UITableViewCell {
         return likes
     }()
     
+    // просмотры
     private let viewsLabel: UILabel = {
         let views = UILabel()
         views.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -61,7 +67,7 @@ class PostTableViewCell: UITableViewCell {
         return views
     }()
     
-    // MARK: Init
+    // init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -78,35 +84,40 @@ class PostTableViewCell: UITableViewCell {
 private extension PostTableViewCell {
     func setupLayout() {
         
-        let views = [authorLabel, postImage, descriptionLabel, likesLabel, viewsLabel]
-        views.forEach { contentView.addSubview($0) }
+        // добавляем всё в корневую contentView
+        contentView.addSubviews(authorLabel, postImage, descriptionLabel, likesLabel, viewsLabel)
         
-        authorLabel.snp.makeConstraints { (make) in
-            make.top.leading.equalTo(contentView).offset(16)
-        }
+        // задаем констрейнты
+        let constraints = [
+            
+            // автор поста
+            authorLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            authorLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            
+            // картинка поста
+            postImage.topAnchor.constraint(equalTo: authorLabel.bottomAnchor, constant: 12),
+            postImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            postImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            postImage.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            postImage.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width),
+            
+            // текст поста
+            descriptionLabel.topAnchor.constraint(equalTo: postImage.bottomAnchor, constant: 16),
+            descriptionLabel.leadingAnchor.constraint(equalTo: authorLabel.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
+            // лайки
+            likesLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
+            likesLabel.leadingAnchor.constraint(equalTo: authorLabel.leadingAnchor),
+            likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            
+            // просмотры
+            viewsLabel.topAnchor.constraint(equalTo: likesLabel.topAnchor),
+            viewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            viewsLabel.bottomAnchor.constraint(equalTo: likesLabel.bottomAnchor),
+            
+        ]
         
-        postImage.snp.makeConstraints { (make) in
-            make.top.equalTo(authorLabel.snp.bottom).offset(12)
-            make.leading.trailing.equalToSuperview()
-            make.width.height.equalTo(UIScreen.main.bounds.width)
-        }
-        
-        descriptionLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(postImage.snp.bottom).offset(16)
-            make.leading.equalTo(authorLabel.snp.leading)
-            make.trailing.equalToSuperview().offset(-16)
-        }
-        
-        likesLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(16)
-            make.leading.equalTo(authorLabel.snp.leading)
-            make.bottom.equalToSuperview().offset(-16)
-        }
-        
-        viewsLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(likesLabel.snp.top)
-            make.trailing.equalToSuperview().offset(-16)
-            make.bottom.equalTo(likesLabel.snp.bottom)
-        }
+        NSLayoutConstraint.activate(constraints)
     }
 }
