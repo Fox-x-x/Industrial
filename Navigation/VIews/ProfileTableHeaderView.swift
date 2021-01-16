@@ -8,7 +8,6 @@
 
 import UIKit
 
-// Если вы выполнили прошлое задание не в отдельном классе-наследнике UIView, то нужно перенести всю верстку в отдельный файл 'ProfileTableHederView.swift', в котором должен быть класс-наследник UIView с именем 'ProfileHeaderView'.
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private var statusText: String?
@@ -98,8 +97,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         
         return button
     }()
-    
-    private var initialFrame: CGRect?
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)

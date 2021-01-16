@@ -10,8 +10,6 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    private var globalHeader: ProfileTableHeaderView?
-    
     // tableView
     // Добавьте экземпляр класса UITableView и закрепите его к краям экрана.
     private lazy var tableView: UITableView = {

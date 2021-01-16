@@ -8,13 +8,21 @@
 
 import UIKit
 
+// Для LoginViewController прописываем протокол делегата LoginViewControllerDelegate. У делегата 2 метода - проверка логина отдельно, пароля отдельно.
+protocol LoginViewControllerDelegate {
+    func checkLogin(_ login: String) -> Bool
+    func checkPass(_ pass: String) -> Bool
+}
+
 class LogInViewController: UIViewController {
+    
+    var delegate: LoginViewControllerDelegate?
     
     // контейнер для всего контента на экране
     private let contentView: UIView = {
         let view = UIView()
         return view
-        }()
+    }()
     
     // scrollView для возможности скролла экрана во время наплыва контента :)
     private lazy var scrollView: UIScrollView = {
@@ -22,7 +30,7 @@ class LogInViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delegate = self
         return scrollView
-        }()
+    }()
     
     // картинка логотипа
     private lazy var logoImageView: UIImageView = {
@@ -134,8 +142,18 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func loginButtonPressed() {
-        let profileViewController = ProfileViewController()
-        self.navigationController?.pushViewController(profileViewController, animated: true)
+        
+        if let login = loginTextField.text, let pass = passwordTextField.text, let authDelegate = delegate {
+            if authDelegate.checkLogin(login) && authDelegate.checkPass(pass) {
+                print("auth confirmed!")
+                let profileViewController = ProfileViewController()
+                self.navigationController?.pushViewController(profileViewController, animated: true)
+            } else {
+                print("incorrect login or password!")
+            }
+        }
+        
+        
     }
     
     // MARK: Helpers
@@ -174,7 +192,6 @@ class LogInViewController: UIViewController {
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
-            // не очень понимаю, почему надо это делать. По логике и в лекции говорили, что можно просто contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor) -- но это почему-то здесь не работает...
             contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             contentView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
             
