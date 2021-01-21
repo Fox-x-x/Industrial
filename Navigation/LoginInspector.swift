@@ -13,22 +13,11 @@ struct LoginInspector: LoginViewControllerDelegate {
     
     // LoginInspector проверяет точность введенного пароля с помощью синглтона Checker.
     func checkLogin(_ login: String) -> Bool {
-        if login == Checker.shared.login {
-            return true
-        } else {
-            return false
-        }
+        return login == Checker.shared.login
     }
     
     func checkPass(_ pass: String) -> Bool {
-        if pass == Checker.shared.pass {
-            return true
-        } else {
-            return false
-        }
+        return pass == Checker.shared.pass
     }
-    
-    // Вопрос:) В задании есть еще вот такой пункт. Не понял для чего он:
-    // Важный момент: чтобы делегат мог вернуть контроллеру результат проверки логина и пароля, в методах протокола делегата должны быть коллбэки/замыкания
     
 }

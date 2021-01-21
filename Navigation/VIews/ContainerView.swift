@@ -66,12 +66,13 @@ class ContainerView: UIView {
     
     // Реализовать action-методы (@objc private func() {}) кнопок в этом классе
     @objc private func openPostButtonTapped() {
-        // Вопрос:) А если нужно передавать конкретные посты из БД для отображения, то методы по работе с ними где лучше писать, прям здесь и передавать в нижезаписанном замыкании? Или вынести это в FeedViewController?
         onTap?()
     }
     
     @objc private func openAnotherPostButtonTapped() {
         onTap?()
+        // можно в onTap передавать параметр какого-то типа: enum FeedOutputTarget, к примеру:
+        // var onTap: ((FeedOutputTarget) -> Void)? - будет как-то так. И в зависимости от case, который передается по нажатию на определенное subview контроллера, наш output (ViewModel, к примеру) обрабатывает сценарий выхода (передачи данных, навигации к другому контроллеру/модулю и тп)
     }
     
 }

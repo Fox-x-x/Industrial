@@ -19,6 +19,10 @@ struct Checker {
         return instance
     }()
     
+    private init() {
+        
+    }
+    
     func checkLoginAndPass() {
         // не понимаю зачем это нужно:)
     }

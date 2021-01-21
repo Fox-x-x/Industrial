@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Доступ к FeedViewController и PostPresenter возможен через SceneDelegate, как в первой задаче. Главный нюанс в том, что FeedViewController нужно инициализировать программно, и инжектить экземпляр презентера при инициализации контроллера или через свойство.
         let postPresenter = PostPresenter(navigationController: UINavigationController())
-        let feedViewController = FeedViewController(output: postPresenter, coder: NSCoder())
+        let feedViewController = FeedViewController(output: postPresenter)
 
         let feedNavController: UINavigationController = {
             let nc = UINavigationController(rootViewController: feedViewController)
