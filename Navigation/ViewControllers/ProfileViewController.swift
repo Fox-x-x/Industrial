@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    weak var flowCoordinator: ProfileCoordinator?
+    
     // tableView
     // Добавьте экземпляр класса UITableView и закрепите его к краям экрана.
     private lazy var tableView: UITableView = {
@@ -128,16 +130,13 @@ extension ProfileViewController: UITableViewDataSource {
     }
 }
 
-// delegate методы
-// не знаю, что тут нужно сделать, но раз в задание написано реализовать протокол, то чтобы он не был пустым, просто вывожу в консоль indexPath тапнутой ячейки
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 0 && indexPath.row == 0 {
-            let photosViewController = PhotosViewController()
             tableView.deselectRow(at: indexPath, animated: false)
-            self.navigationController?.pushViewController(photosViewController, animated: true)
+            flowCoordinator?.goToPhotos()
         }
     }
     

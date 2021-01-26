@@ -8,19 +8,16 @@
 
 import UIKit
 
-// У вашего протокола FeedViewOutput будет 1 метод showPost() (название на ваш вкус), в котором нужно инициализировать PostViewController. А также 1 свойство var navigationController: UINavigationController? { get set }
 protocol FeedViewOutput {
-    // протокол лучше здесь писать или правилом хорошего тона будет вынести в отдельный файл?
+    var flowCoordinator: FeedCoordinator { get set }
     func showPost()
-    var navigationController: UINavigationController { get set }
 }
 
 final class FeedViewController: UIViewController {
-    
-    // Создаем свойство output у контроллера FeedViewController - оно будет протокольного типа FeedViewOutput.
+
     var output: FeedViewOutput
+    weak var flowCoordinator: FeedCoordinator?
     
-    // Определить замыкание onTap надо в контроллере FeedViewController, когда будете определять/конфигурировать ContainerView. В замыкании будет только вызов единственного метода свойства output (тип FeedViewOutput).
     private lazy var containerView: ContainerView = {
         let view = ContainerView()
         view.onTap = {
@@ -30,13 +27,12 @@ final class FeedViewController: UIViewController {
         return view
     }()
     
-    // Инъекция зависимости FeedViewController от FeedViewOutput происходит через инициализатор.
     init(output: FeedViewOutput) {
         self.output = output
         super.init(nibName: nil, bundle: nil)
-        
+
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -46,12 +42,9 @@ final class FeedViewController: UIViewController {
         print(type(of: self), #function)
         
         view.backgroundColor = .systemGreen
+        title = "Feed"
         
         setupViews()
-        
-        // Чтобы PostPresenter мог использовать свойство navigationController от FeedViewController, нужно передать navigationController от FeedViewController -> PostPresenter. Например, в viewDidLoad() контроллера.
-        output.navigationController = self.navigationController ?? UINavigationController()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,5 +92,9 @@ final class FeedViewController: UIViewController {
 
     }
     
+    @objc func openPostButtonTapped() {
+        print("openPostButtonTapped in FeedViewController")
+        flowCoordinator?.goToPost()
+    }
     
 }

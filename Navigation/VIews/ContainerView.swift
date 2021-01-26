@@ -8,10 +8,8 @@
 
 import UIKit
 
-// Вынести кнопки из контроллера в отдельный дочерний файл/класс UIView / UIStackView, возможна разная реализация, в дальнейшем назовем ContainerView
 class ContainerView: UIView {
     
-    // Каждый action-метод будет вызывать замыкание onTap: (() -> Void)?. Название произвольное - обычно применяются onAction, onSelect, onTap... Единственным самодельным элементом интерфейса ContainerView будет это замыкание. Имеется в виду, что остальной интерфейс штатный, наследуется от родителя.
     var onTap: (() -> Void)?
     
     private lazy var openPostButton: UIButton = {
@@ -64,15 +62,13 @@ class ContainerView: UIView {
         
     }
     
-    // Реализовать action-методы (@objc private func() {}) кнопок в этом классе
     @objc private func openPostButtonTapped() {
+        print("openPostButtonTapped in containerView")
         onTap?()
     }
     
     @objc private func openAnotherPostButtonTapped() {
         onTap?()
-        // можно в onTap передавать параметр какого-то типа: enum FeedOutputTarget, к примеру:
-        // var onTap: ((FeedOutputTarget) -> Void)? - будет как-то так. И в зависимости от case, который передается по нажатию на определенное subview контроллера, наш output (ViewModel, к примеру) обрабатывает сценарий выхода (передачи данных, навигации к другому контроллеру/модулю и тп)
     }
     
 }

@@ -8,10 +8,8 @@
 
 import Foundation
 
-// Создаем произвольный класс/структуру LoginInspector (придумайте свое название), который реализует протокол LoginViewControllerDelegate, реализуем в нем протокольные методы.
 struct LoginInspector: LoginViewControllerDelegate {
     
-    // LoginInspector проверяет точность введенного пароля с помощью синглтона Checker.
     func checkLogin(_ login: String) -> Bool {
         return login == Checker.shared.login
     }

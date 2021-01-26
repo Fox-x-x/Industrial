@@ -11,6 +11,8 @@ import UIKit
 // Создайте PhotosViewController.swift c одноименным классом внутри.
 class PhotosViewController: UIViewController {
     
+    weak var flowCoordinator: ProfileCoordinator?
+    
     // Добавьте в него экземпляр класса UICollectionView и "растяните" по краям согласно макету.
     private lazy var collectionView: UICollectionView = {
         
