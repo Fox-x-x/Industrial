@@ -17,6 +17,7 @@ protocol LoginViewControllerDelegate {
 class LogInViewController: UIViewController {
     
     var delegate: LoginViewControllerDelegate?
+    weak var flowCoordinator: ProfileCoordinator?
     
     // контейнер для всего контента на экране
     private let contentView: UIView = {
@@ -142,18 +143,7 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func loginButtonPressed() {
-        
-        if let login = loginTextField.text, let pass = passwordTextField.text, let authDelegate = delegate {
-            if authDelegate.checkLogin(login) && authDelegate.checkPass(pass) {
-                print("auth confirmed!")
-                let profileViewController = ProfileViewController()
-                self.navigationController?.pushViewController(profileViewController, animated: true)
-            } else {
-                print("incorrect login or password!")
-            }
-        }
-        
-        
+        flowCoordinator?.goToProfile()
     }
     
     // MARK: Helpers
@@ -241,14 +231,12 @@ class LogInViewController: UIViewController {
             loginButton.leadingAnchor.constraint(equalTo: emailAndPassCommonContainer.leadingAnchor),
             loginButton.trailingAnchor.constraint(equalTo: emailAndPassCommonContainer.trailingAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
-            
         ]
         
         // активируем все констрейнты
         NSLayoutConstraint.activate(constraints)
         
     }
- 
 }
 
 extension LogInViewController: UIScrollViewDelegate {

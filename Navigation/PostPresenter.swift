@@ -8,19 +8,17 @@
 
 import UIKit
 
-// Класс PostPresenter, реализуя протокол FeedViewOutput, создает PostViewController, а далее использует протокольное свойство navigationController, чтобы презентовать PostViewController.
 class PostPresenter: FeedViewOutput {
     
-    var navigationController: UINavigationController
+    var flowCoordinator: FeedCoordinator
     
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(_ flowCoordinator: FeedCoordinator) {
+        self.flowCoordinator = flowCoordinator
     }
     
     func showPost() {
         print("show post")
-        let postViewController = PostViewController()
-        navigationController.pushViewController(postViewController, animated: true)
+        flowCoordinator.goToPost()
     }
     
 }
