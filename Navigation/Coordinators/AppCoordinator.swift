@@ -41,8 +41,8 @@ class AppCoordinator: MainCoordinator {
             $0.start()
         }
 
-        tabBarController.viewControllers = [feedNavController, profileNavController]
+        let navControllers = [feedNavController, profileNavController]
+        tabBarController.setViewControllers(navControllers, animated: true)
     }
-    
     
 }

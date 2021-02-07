@@ -110,7 +110,6 @@ class LogInViewController: UIViewController {
         navigationController?.navigationBar.isHidden = true
         
         view.backgroundColor = .white
-        title = "Profile"
         
         // настраиваем layout
         setupLayout()
@@ -232,14 +231,12 @@ class LogInViewController: UIViewController {
             loginButton.leadingAnchor.constraint(equalTo: emailAndPassCommonContainer.leadingAnchor),
             loginButton.trailingAnchor.constraint(equalTo: emailAndPassCommonContainer.trailingAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
-            
         ]
         
         // активируем все констрейнты
         NSLayoutConstraint.activate(constraints)
         
     }
- 
 }
 
 extension LogInViewController: UIScrollViewDelegate {

@@ -42,7 +42,6 @@ final class FeedViewController: UIViewController {
         print(type(of: self), #function)
         
         view.backgroundColor = .systemGreen
-        title = "Feed"
         
         setupViews()
     }

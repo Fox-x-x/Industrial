@@ -59,7 +59,6 @@ class ContainerView: UIView {
         ]
         
         NSLayoutConstraint.activate(constraints)
-        
     }
     
     @objc private func openPostButtonTapped() {

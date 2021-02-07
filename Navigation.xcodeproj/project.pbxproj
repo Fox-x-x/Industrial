@@ -37,6 +37,9 @@
 		93E16BF8257968EE009CB329 /* AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E16BF7257968EE009CB329 /* AutoLayout.swift */; };
 		93F555E72598EE2600464512 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F555E62598EE2600464512 /* LoginInspector.swift */; };
 		93FA76532597940B0086F9B2 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA76522597940B0086F9B2 /* Checker.swift */; };
+		93FEB0DA25C74F3D005CBBFC /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FEB0D925C74F3D005CBBFC /* PhotosModel.swift */; };
+		93FEB0E025C753DD005CBBFC /* PhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FEB0DF25C753DD005CBBFC /* PhotosViewModel.swift */; };
+		93FEB0E325C75AEF005CBBFC /* PhotosVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FEB0E225C75AEF005CBBFC /* PhotosVIew.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +75,9 @@
 		93E16BF7257968EE009CB329 /* AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayout.swift; sourceTree = "<group>"; };
 		93F555E62598EE2600464512 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		93FA76522597940B0086F9B2 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		93FEB0D925C74F3D005CBBFC /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
+		93FEB0DF25C753DD005CBBFC /* PhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModel.swift; sourceTree = "<group>"; };
+		93FEB0E225C75AEF005CBBFC /* PhotosVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosVIew.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,7 @@
 			children = (
 				934F8F72252117FB008269D8 /* ProfileViewController.swift */,
 				93C8B83925459004004B72C1 /* PhotosViewController.swift */,
+				93FEB0DC25C74F73005CBBFC /* Photos MVVM */,
 				930407A4253352D30080D98C /* LogInViewController.swift */,
 				060782B5250CE27700A87020 /* FeedViewController.swift */,
 				060782C5250CEB0A00A87020 /* InfoViewController.swift */,
@@ -185,6 +192,16 @@
 				93E16BF7257968EE009CB329 /* AutoLayout.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		93FEB0DC25C74F73005CBBFC /* Photos MVVM */ = {
+			isa = PBXGroup;
+			children = (
+				93FEB0D925C74F3D005CBBFC /* PhotosModel.swift */,
+				93FEB0DF25C753DD005CBBFC /* PhotosViewModel.swift */,
+				93FEB0E225C75AEF005CBBFC /* PhotosVIew.swift */,
+			);
+			path = "Photos MVVM";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,11 +295,14 @@
 				935AF8D525A4BD7400F8A9AE /* ContainerView.swift in Sources */,
 				93A7093525BD97A300FBD4AB /* FlowCoordinator.swift in Sources */,
 				93AD1BA025A735B500EB90FA /* PostPresenter.swift in Sources */,
+				93FEB0E325C75AEF005CBBFC /* PhotosVIew.swift in Sources */,
 				93A7092F25BD7AD900FBD4AB /* Coordinator.swift in Sources */,
+				93FEB0DA25C74F3D005CBBFC /* PhotosModel.swift in Sources */,
 				93BC83572538D436009F0B86 /* UIImage+Alpha.swift in Sources */,
 				930407A5253352D30080D98C /* LogInViewController.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
 				935E0B8E253C535A00DD3585 /* PostTableViewCell.swift in Sources */,
+				93FEB0E025C753DD005CBBFC /* PhotosViewModel.swift in Sources */,
 				93A7093E25BE197E00FBD4AB /* FeedCoordinator.swift in Sources */,
 				935E0B91253C76C500DD3585 /* Storage.swift in Sources */,
 			);

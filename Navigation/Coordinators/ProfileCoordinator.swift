@@ -21,6 +21,7 @@ class ProfileCoordinator: FlowCoordinator {
     func start() {
         let vc = LogInViewController()
         vc.flowCoordinator = self
+        vc.title = "Profile"
         navigationController.pushViewController(vc, animated: true)
     }
     
@@ -31,8 +32,11 @@ class ProfileCoordinator: FlowCoordinator {
     }
     
     func goToPhotos() {
-        let vc = PhotosViewController()
-        vc.flowCoordinator = self
-        navigationController.pushViewController(vc, animated: true)
+        let model = PhotosModel.init()
+        let viewModel = PhotosViewModel.init(model: model, photos: [])
+        let view = PhotosView.init(vm: viewModel)
+        view.flowCoordinator = self
+        navigationController.navigationBar.isHidden = false
+        navigationController.pushViewController(view, animated: true)
     }
 }

@@ -75,7 +75,7 @@ extension ProfileViewController: UITableViewDataSource {
     
     // кол-во секций
     func numberOfSections(in tableView: UITableView) -> Int {
-        return Storage.moviesData.count
+        return 2
     }
     
     // кол-во строк
@@ -85,7 +85,7 @@ extension ProfileViewController: UITableViewDataSource {
             return 1
         } else {
             // в остальных случаях
-            return Storage.moviesData[section].count
+            return Storage.moviesData.count
         }
         
     }
@@ -97,7 +97,7 @@ extension ProfileViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
             
-            cell.photos = getPhotosFromStorage(Storage.moviesData[indexPath.section] as! [String])
+            cell.photos = getPhotosFromStorage(Storage.photos)
             
             return cell
             
@@ -105,7 +105,7 @@ extension ProfileViewController: UITableViewDataSource {
             // остальные секции с постами (по факту на данный момент всего 1 секция)
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
                 
-            cell.post = Storage.moviesData[indexPath.section][indexPath.row] as? Post
+            cell.post = Storage.moviesData[indexPath.row]
             
             // делаем разделитель строк на всю ширину экрана, чтоб красивее смотрелось :)
             cell.preservesSuperviewLayoutMargins = false
