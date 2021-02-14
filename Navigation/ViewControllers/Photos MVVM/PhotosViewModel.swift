@@ -10,7 +10,7 @@ import Foundation
 
 class PhotosViewModel: NSObject {
     
-    var model: PhotosModel
+    private var model: PhotosModel
     
     var photos: [String] {
         didSet {

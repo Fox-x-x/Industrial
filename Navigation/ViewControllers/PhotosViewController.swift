@@ -12,7 +12,7 @@ import UIKit
 class PhotosViewController: UIViewController {
     
     weak var flowCoordinator: ProfileCoordinator?
-    let photosView: PhotosView?
+    let photosView: PhotosView
     
     init(photosView: PhotosView) {
         

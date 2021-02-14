@@ -27,7 +27,7 @@ class PhotosView: UIViewController {
         return collectionView
     }()
     
-    var vm: PhotosViewModel
+    private var vm: PhotosViewModel
     
     init(vm: PhotosViewModel) {
         

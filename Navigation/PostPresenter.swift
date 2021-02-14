@@ -10,7 +10,7 @@ import UIKit
 
 class PostPresenter: FeedViewOutput {
     
-    var flowCoordinator: FeedCoordinator
+    unowned var flowCoordinator: FeedCoordinator
     
     init(_ flowCoordinator: FeedCoordinator) {
         self.flowCoordinator = flowCoordinator
