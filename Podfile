@@ -1,17 +1,10 @@
-# platform :ios, '9.0'
+platform :ios, '9.0'
 
-target 'Navigation' do
+target 'GCD practice' do
   use_frameworks!
 
-  # Pods for Navigation
-  pod 'SnapKit', '~> 5.0.0'
-
-end
-
-target 'Navigation 2' do
-  use_frameworks!
-
-  # Pods for Navigation 2
-  pod 'SnapKit', '~> 5.0.0'
+  # Pods for GCD practice
+  pod 'SwiftyJSON', '~> 4.0'
+  pod "SwiftSpinner"
 
 end
