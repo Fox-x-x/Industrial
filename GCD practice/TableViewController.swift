@@ -33,14 +33,16 @@ class TableViewController: UIViewController {
     
     func getURLsFromServer() {
         if let url = URL(string: "https://jsonplaceholder.typicode.com/photos") {
-            let queue = DispatchQueue.global(qos: .utility)
+            let queue = DispatchQueue.global(qos: .userInitiated)
+            DispatchQueue.main.async {
+                SwiftSpinner.show("Loading data...", animated: true)
+            }
             queue.async {
-                let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-                    DispatchQueue.main.async {
-                        SwiftSpinner.show("Loading data...", animated: true)
-                    }
+                let task = URLSession.shared.dataTask(with: url) {[weak self] (data, response, error) in
                     guard let data = data else { return }
-                    self.parseJSON(data)
+                    if let vc = self {
+                        vc.parseJSON(data)
+                    }
                 }
 
                 task.resume()
