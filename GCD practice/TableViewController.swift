@@ -53,6 +53,7 @@ class TableViewController: UIViewController {
     func parseJSON(_ serverData: Data) {
         
         let json = JSON(serverData)
+        print(json)
         
         for (_, element) in json.enumerated() {
             if let url = element.1["url"].string {
