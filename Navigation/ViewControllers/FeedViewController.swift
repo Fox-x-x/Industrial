@@ -17,6 +17,8 @@ final class FeedViewController: UIViewController {
 
     var output: FeedViewOutput
     weak var flowCoordinator: FeedCoordinator?
+    var timerCounter = 10
+    private lazy var timer = Timer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
     
     private lazy var containerView: ContainerView = {
         let view = ContainerView()
@@ -25,6 +27,15 @@ final class FeedViewController: UIViewController {
             self.output.showPost()
         }
         return view
+    }()
+    
+    private lazy var counterLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.textColor = .black
+        label.textAlignment = .center
+        label.sizeToFit()
+        return label
     }()
     
     init(output: FeedViewOutput) {
@@ -54,6 +65,8 @@ final class FeedViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print(type(of: self), #function)
+        
+        startTimer()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,15 +89,36 @@ final class FeedViewController: UIViewController {
         print(type(of: self), #function)
     }
     
+    func startTimer() {
+        RunLoop.current.add(timer, forMode: .common)
+    }
+    
+    @objc func fireTimer() {
+        print("Осталось: \(timerCounter)")
+        counterLabel.text = "Осталось: \(timerCounter)"
+        if timerCounter > 0 {
+            timerCounter -= 1
+        } else {
+            print("БУМ!")
+            counterLabel.text = "БУМ! :)"
+            timer.invalidate()
+        }
+    }
+    
     private func setupViews() {
         
-        view.addSubviewWithAutolayout(containerView)
+        view.addSubviews(containerView, counterLabel)
         
         let constraints = [
             containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             containerView.heightAnchor.constraint(equalToConstant: 100),
-            containerView.widthAnchor.constraint(equalToConstant: 200)
+            containerView.widthAnchor.constraint(equalToConstant: 200),
+            
+            counterLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20),
+            counterLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            counterLabel.widthAnchor.constraint(equalTo: containerView.widthAnchor),
+            counterLabel.heightAnchor.constraint(equalToConstant: 50)
         ]
         
         NSLayoutConstraint.activate(constraints)
