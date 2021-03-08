@@ -36,4 +36,10 @@ class FeedCoordinator: FlowCoordinator {
         vc.flowCoordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func goToGCDTest() {
+        let vc = GCDTestViewController()
+        vc.flowCoordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
 }

@@ -11,6 +11,7 @@ import UIKit
 protocol FeedViewOutput {
     var flowCoordinator: FeedCoordinator { get set }
     func showPost()
+    func goToGCDTest()
 }
 
 final class FeedViewController: UIViewController {
@@ -18,14 +19,22 @@ final class FeedViewController: UIViewController {
     var output: FeedViewOutput
     weak var flowCoordinator: FeedCoordinator?
     var timerCounter = 10
-    private lazy var timer = Timer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+    var timer: Timer?
     
     private lazy var containerView: ContainerView = {
+        
         let view = ContainerView()
+        
         view.onTap = {
             print("onTap!")
             self.output.showPost()
         }
+        
+        view.onAnotherButtonTap = {
+            print("another tap!")
+            self.output.goToGCDTest()
+        }
+        
         return view
     }()
     
@@ -60,6 +69,8 @@ final class FeedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print(type(of: self), #function)
+        
+        counterLabel.text = "Осталось:"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -77,6 +88,7 @@ final class FeedViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         print(type(of: self), #function)
+        timer?.invalidate()
     }
     
     override func viewWillLayoutSubviews() {
@@ -90,7 +102,9 @@ final class FeedViewController: UIViewController {
     }
     
     func startTimer() {
-        RunLoop.current.add(timer, forMode: .common)
+        timer = Timer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        timerCounter = 10
+        RunLoop.current.add(timer ?? Timer(), forMode: .common)
     }
     
     @objc func fireTimer() {
@@ -101,7 +115,7 @@ final class FeedViewController: UIViewController {
         } else {
             print("БУМ!")
             counterLabel.text = "БУМ! :)"
-            timer.invalidate()
+            timer?.invalidate()
         }
     }
     
