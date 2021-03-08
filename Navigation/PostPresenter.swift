@@ -21,4 +21,9 @@ class PostPresenter: FeedViewOutput {
         flowCoordinator.goToPost()
     }
     
+    func goToGCDTest() {
+        print("GCD")
+        flowCoordinator.goToGCDTest()
+    }
+    
 }

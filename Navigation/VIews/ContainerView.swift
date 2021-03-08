@@ -11,6 +11,7 @@ import UIKit
 class ContainerView: UIView {
     
     var onTap: (() -> Void)?
+    var onAnotherButtonTap: (() -> Void)?
     
     private lazy var openPostButton: UIButton = {
         let button = UIButton()
@@ -67,7 +68,7 @@ class ContainerView: UIView {
     }
     
     @objc private func openAnotherPostButtonTapped() {
-        onTap?()
+        onAnotherButtonTap?()
     }
     
 }

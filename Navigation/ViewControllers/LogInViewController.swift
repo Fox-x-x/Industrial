@@ -143,7 +143,29 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func loginButtonPressed() {
-        flowCoordinator?.goToProfile()
+        
+        do {
+            let _ = try auth()
+            flowCoordinator?.goToProfile()
+        } catch ApiError.unauthorized {
+            handleApiError(error: ApiError.unauthorized, vc: self)
+        } catch ApiError.internalError {
+            handleApiError(error: ApiError.internalError, vc: self)
+        } catch {
+            handleApiError(error: ApiError.other, vc: self)
+        }   
+    }
+    
+    private func auth() throws -> Bool {
+        if let loginDelegate = delegate {
+            if loginDelegate.checkLogin(loginTextField.text!) && loginDelegate.checkPass(passwordTextField.text!) {
+                return true
+            } else {
+                throw ApiError.unauthorized
+            }
+        } else {
+            throw ApiError.internalError
+        }
     }
     
     // MARK: Helpers

@@ -5,13 +5,7 @@ target 'Navigation' do
 
   # Pods for Navigation
   pod 'SnapKit', '~> 5.0.0'
-
-end
-
-target 'Navigation 2' do
-  use_frameworks!
-
-  # Pods for Navigation 2
-  pod 'SnapKit', '~> 5.0.0'
+  pod 'SwiftyJSON', '~> 4.0'
+  pod "SwiftSpinner"
 
 end

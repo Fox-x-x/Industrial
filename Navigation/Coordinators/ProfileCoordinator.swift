@@ -20,6 +20,8 @@ class ProfileCoordinator: FlowCoordinator {
     
     func start() {
         let vc = LogInViewController()
+        let loginInspector = LoginInspector()
+        vc.delegate = loginInspector
         vc.flowCoordinator = self
         vc.title = "Profile"
         navigationController.pushViewController(vc, animated: true)
