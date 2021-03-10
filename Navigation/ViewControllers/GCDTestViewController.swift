@@ -29,7 +29,9 @@ class GCDTestViewController: UIViewController {
         
         view.backgroundColor = .white
         title = "GCD test table"
+        
         setupLayout()
+        
         getURLsFromServer { result in
             switch result {
             case .success(let URLs):
@@ -54,7 +56,7 @@ class GCDTestViewController: UIViewController {
         
         var URLsFromServer: [String] = []
         
-        if let url = URL(string: "https://jsonplaceholder.typicode.com/photos1") {
+        if let url = URL(string: "https://jsonplaceholder.typicode.com/photos") {
             let queue = DispatchQueue.global(qos: .userInitiated)
             DispatchQueue.main.async {
                 SwiftSpinner.show("Loading data...", animated: true)
