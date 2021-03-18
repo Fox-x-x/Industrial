@@ -26,4 +26,12 @@ class PostPresenter: FeedViewOutput {
         flowCoordinator.goToGCDTest()
     }
     
+    func goToMusic() {
+        flowCoordinator.goToMusic()
+    }
+    
+    func goToYouTube() {
+        flowCoordinator.goToYouTube()
+    }
+    
 }

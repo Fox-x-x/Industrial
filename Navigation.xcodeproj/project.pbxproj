@@ -17,6 +17,14 @@
 		060782CA250CEE7200A87020 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060782C9250CEE7200A87020 /* Post.swift */; };
 		7F34772891A9DC2852D80134 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5331F067CE099B5C199E51C9 /* Pods_Navigation.framework */; };
 		930407A5253352D30080D98C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930407A4253352D30080D98C /* LogInViewController.swift */; };
+		9308757325FE7FF30086D658 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9308757225FE7FF30086D658 /* MusicViewController.swift */; };
+		9308757A25FEB1500086D658 /* Кувалда — Бетономешалка.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9308757525FEB14F0086D658 /* Кувалда — Бетономешалка.mp3 */; };
+		9308757B25FEB1500086D658 /* Metallica — Enter Sandman.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9308757625FEB14F0086D658 /* Metallica — Enter Sandman.mp3 */; };
+		9308757C25FEB1500086D658 /* Imagine Dragond - Whatever it takes.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9308757725FEB14F0086D658 /* Imagine Dragond - Whatever it takes.mp3 */; };
+		9308757D25FEB1500086D658 /* The Pretty Reckless — Just Tonight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9308757825FEB1500086D658 /* The Pretty Reckless — Just Tonight.mp3 */; };
+		9308757E25FEB1500086D658 /* Nirvana — Come as You Are.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9308757925FEB1500086D658 /* Nirvana — Come as You Are.mp3 */; };
+		93087583260287F10086D658 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93087582260287F10086D658 /* YouTubeViewController.swift */; };
+		930875862602956F0086D658 /* YouTubeVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930875852602956F0086D658 /* YouTubeVideoViewController.swift */; };
 		93342C8D25701DD500009DE6 /* FindViewControllerForView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93342C8C25701DD500009DE6 /* FindViewControllerForView.swift */; };
 		93396ADB25F3ECF5008149C0 /* GCDTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93396ADA25F3ECF5008149C0 /* GCDTestViewController.swift */; };
 		9342E95D25F4FBFC003D9897 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342E95C25F4FBFC003D9897 /* Errors.swift */; };
@@ -60,6 +68,14 @@
 		17D1A9BB57D494279914F6A1 /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
 		5331F067CE099B5C199E51C9 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		930407A4253352D30080D98C /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		9308757225FE7FF30086D658 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
+		9308757525FEB14F0086D658 /* Кувалда — Бетономешалка.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Кувалда — Бетономешалка.mp3"; sourceTree = "<group>"; };
+		9308757625FEB14F0086D658 /* Metallica — Enter Sandman.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Metallica — Enter Sandman.mp3"; sourceTree = "<group>"; };
+		9308757725FEB14F0086D658 /* Imagine Dragond - Whatever it takes.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Imagine Dragond - Whatever it takes.mp3"; sourceTree = "<group>"; };
+		9308757825FEB1500086D658 /* The Pretty Reckless — Just Tonight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "The Pretty Reckless — Just Tonight.mp3"; sourceTree = "<group>"; };
+		9308757925FEB1500086D658 /* Nirvana — Come as You Are.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nirvana — Come as You Are.mp3"; sourceTree = "<group>"; };
+		93087582260287F10086D658 /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
+		930875852602956F0086D658 /* YouTubeVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeVideoViewController.swift; sourceTree = "<group>"; };
 		93342C8C25701DD500009DE6 /* FindViewControllerForView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindViewControllerForView.swift; sourceTree = "<group>"; };
 		93396ADA25F3ECF5008149C0 /* GCDTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDTestViewController.swift; sourceTree = "<group>"; };
 		9342E95C25F4FBFC003D9897 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -106,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				060782B0250CE27700A87020 /* Navigation */,
+				9308758025FEB15B0086D658 /* Music */,
 				060782AF250CE27700A87020 /* Products */,
 				B1DB6FC9026B8AB14FC14930 /* Pods */,
 				5E86EBA5E4B402370EADAEE3 /* Frameworks */,
@@ -149,11 +166,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9308758025FEB15B0086D658 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				9308757525FEB14F0086D658 /* Кувалда — Бетономешалка.mp3 */,
+				9308757725FEB14F0086D658 /* Imagine Dragond - Whatever it takes.mp3 */,
+				9308757625FEB14F0086D658 /* Metallica — Enter Sandman.mp3 */,
+				9308757925FEB1500086D658 /* Nirvana — Come as You Are.mp3 */,
+				9308757825FEB1500086D658 /* The Pretty Reckless — Just Tonight.mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
 		934F8F6E2521177E008269D8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				934F8F72252117FB008269D8 /* ProfileViewController.swift */,
 				93C8B83925459004004B72C1 /* PhotosViewController.swift */,
+				9308757225FE7FF30086D658 /* MusicViewController.swift */,
+				93087582260287F10086D658 /* YouTubeViewController.swift */,
+				930875852602956F0086D658 /* YouTubeVideoViewController.swift */,
 				93FEB0DC25C74F73005CBBFC /* Photos MVVM */,
 				930407A4253352D30080D98C /* LogInViewController.swift */,
 				060782B5250CE27700A87020 /* FeedViewController.swift */,
@@ -297,8 +329,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9308757A25FEB1500086D658 /* Кувалда — Бетономешалка.mp3 in Resources */,
 				060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */,
 				060782BB250CE27A00A87020 /* Assets.xcassets in Resources */,
+				9308757E25FEB1500086D658 /* Nirvana — Come as You Are.mp3 in Resources */,
+				9308757B25FEB1500086D658 /* Metallica — Enter Sandman.mp3 in Resources */,
+				9308757D25FEB1500086D658 /* The Pretty Reckless — Just Tonight.mp3 in Resources */,
+				9308757C25FEB1500086D658 /* Imagine Dragond - Whatever it takes.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
+				9308757325FE7FF30086D658 /* MusicViewController.swift in Sources */,
 				93A7093225BD7B6C00FBD4AB /* MainCoordinator.swift in Sources */,
 				93A7093A25BD9A0000FBD4AB /* AppCoordinator.swift in Sources */,
 				93396ADB25F3ECF5008149C0 /* GCDTestViewController.swift in Sources */,
@@ -368,6 +406,7 @@
 				934F8F70252117CC008269D8 /* ProfileTableHeaderView.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
 				93342C8D25701DD500009DE6 /* FindViewControllerForView.swift in Sources */,
+				930875862602956F0086D658 /* YouTubeVideoViewController.swift in Sources */,
 				93E16BF8257968EE009CB329 /* AutoLayout.swift in Sources */,
 				934F8F73252117FB008269D8 /* ProfileViewController.swift in Sources */,
 				93B80EEA25475A4B0062E540 /* PhotosCollectionViewCell.swift in Sources */,
@@ -380,6 +419,7 @@
 				93FEB0DA25C74F3D005CBBFC /* PhotosModel.swift in Sources */,
 				93BC83572538D436009F0B86 /* UIImage+Alpha.swift in Sources */,
 				930407A5253352D30080D98C /* LogInViewController.swift in Sources */,
+				93087583260287F10086D658 /* YouTubeViewController.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
 				935E0B8E253C535A00DD3585 /* PostTableViewCell.swift in Sources */,
 				93FEB0E025C753DD005CBBFC /* PhotosViewModel.swift in Sources */,
