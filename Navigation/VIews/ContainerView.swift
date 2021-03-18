@@ -12,6 +12,8 @@ class ContainerView: UIView {
     
     var onTap: (() -> Void)?
     var onAnotherButtonTap: (() -> Void)?
+    var onMusicButtonTap: (() -> Void)?
+    var onYouTubeButtonTap: (() -> Void)?
     
     private lazy var openPostButton: UIButton = {
         let button = UIButton()
@@ -32,6 +34,26 @@ class ContainerView: UIView {
         button.addTarget(self, action: #selector(openAnotherPostButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    private lazy var musicButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .orange
+        button.setTitleColor(.blue, for: .normal)
+        button.setTitle("Music", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        button.addTarget(self, action: #selector(musicButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var youTubeButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .orange
+        button.setTitleColor(.blue, for: .normal)
+        button.setTitle("YouTube", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        button.addTarget(self, action: #selector(youTubeButtonTapped), for: .touchUpInside)
+        return button
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,7 +67,7 @@ class ContainerView: UIView {
     
     private func setupViews() {
         
-        addSubviews(openPostButton, openAnotherPostButton)
+        addSubviews(openPostButton, openAnotherPostButton, musicButton, youTubeButton)
         
         let constraints = [
             openPostButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
@@ -57,6 +79,17 @@ class ContainerView: UIView {
             openAnotherPostButton.leadingAnchor.constraint(equalTo: openPostButton.leadingAnchor),
             openAnotherPostButton.trailingAnchor.constraint(equalTo: openPostButton.trailingAnchor),
             openAnotherPostButton.heightAnchor.constraint(equalToConstant: 30),
+            
+            musicButton.topAnchor.constraint(equalTo: openAnotherPostButton.bottomAnchor, constant: 8),
+            musicButton.leadingAnchor.constraint(equalTo: openPostButton.leadingAnchor),
+            musicButton.trailingAnchor.constraint(equalTo: openPostButton.trailingAnchor),
+            musicButton.heightAnchor.constraint(equalToConstant: 30),
+            
+            youTubeButton.topAnchor.constraint(equalTo: musicButton.bottomAnchor, constant: 8),
+            youTubeButton.leadingAnchor.constraint(equalTo: openPostButton.leadingAnchor),
+            youTubeButton.trailingAnchor.constraint(equalTo: openPostButton.trailingAnchor),
+            youTubeButton.heightAnchor.constraint(equalToConstant: 30),
+            
         ]
         
         NSLayoutConstraint.activate(constraints)
@@ -69,6 +102,16 @@ class ContainerView: UIView {
     
     @objc private func openAnotherPostButtonTapped() {
         onAnotherButtonTap?()
+    }
+    
+    @objc private func musicButtonTapped() {
+        print("music")
+        onMusicButtonTap?()
+    }
+    
+    @objc private func youTubeButtonTapped() {
+        print("youTube")
+        onYouTubeButtonTap?()
     }
     
 }

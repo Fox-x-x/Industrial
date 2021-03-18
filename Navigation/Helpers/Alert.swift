@@ -8,9 +8,9 @@
 
 import UIKit
 
-class Alert: NSObject{
+class Alert {
 
-    func showAlertError(title: String, message: String, on viewController: UIViewController) {
+    class func showAlertError(title: String, message: String, on viewController: UIViewController) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let ok = UIAlertAction(title: "Ok", style: .cancel) { _ in

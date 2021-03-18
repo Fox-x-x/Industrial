@@ -32,20 +32,22 @@ class GCDTestViewController: UIViewController {
         
         setupLayout()
         
-        getURLsFromServer { result in
-            switch result {
-            case .success(let URLs):
-                self.photoURLs = URLs
-                DispatchQueue.main.async {
-                    SwiftSpinner.hide()
-                    self.myCoolTableView.reloadData()
+        getURLsFromServer { [weak self] result in
+            if let vc = self {
+                switch result {
+                case .success(let URLs):
+                    vc.photoURLs = URLs
+                    DispatchQueue.main.async {
+                        SwiftSpinner.hide()
+                        vc.myCoolTableView.reloadData()
+                    }
+                case .failure(let error):
+                    print("error: \(error)")
+                    DispatchQueue.main.async {
+                        SwiftSpinner.hide()
+                    }
+                    handleApiError(error: error, vc: vc)
                 }
-            case .failure(let error):
-                print("error: \(error)")
-                DispatchQueue.main.async {
-                    SwiftSpinner.hide()
-                }
-                handleApiError(error: error, vc: self)
             }
             
         }
@@ -56,26 +58,25 @@ class GCDTestViewController: UIViewController {
         
         var URLsFromServer: [String] = []
         
-        if let url = URL(string: "https://jsonplaceholder.typicode.com/photos") {
-            let queue = DispatchQueue.global(qos: .userInitiated)
-            DispatchQueue.main.async {
-                SwiftSpinner.show("Loading data...", animated: true)
-            }
-            queue.async {
-                let task = URLSession.shared.dataTask(with: url) {[weak self] (data, response, error) in
-                    guard let data = data else { return }
-                    if let vc = self {
-                        URLsFromServer = vc.parseJSON(data)
-                    }
-                    if URLsFromServer.isEmpty {
-                        completion(.failure(.emptyData))
-                    } else {
-                        completion(.success(URLsFromServer))
-                    }
+        guard let url = URL(string: "https://jsonplaceholder.typicode.com/photos") else { return }
+        let queue = DispatchQueue.global(qos: .userInitiated)
+        DispatchQueue.main.async {
+            SwiftSpinner.show("Loading data...", animated: true)
+        }
+        queue.async {
+            let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+                guard let data = data else { return }
+                if let vc = self {
+                    URLsFromServer = vc.parseJSON(data)
                 }
-
-                task.resume()
+                if URLsFromServer.isEmpty {
+                    completion(.failure(.emptyData))
+                } else {
+                    completion(.success(URLsFromServer))
+                }
             }
+
+            task.resume()
         }
     }
     

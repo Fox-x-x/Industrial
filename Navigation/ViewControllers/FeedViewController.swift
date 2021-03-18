@@ -12,6 +12,8 @@ protocol FeedViewOutput {
     var flowCoordinator: FeedCoordinator { get set }
     func showPost()
     func goToGCDTest()
+    func goToMusic()
+    func goToYouTube()
 }
 
 final class FeedViewController: UIViewController {
@@ -33,6 +35,14 @@ final class FeedViewController: UIViewController {
         view.onAnotherButtonTap = {
             print("another tap!")
             self.output.goToGCDTest()
+        }
+        
+        view.onMusicButtonTap = {
+            self.output.goToMusic()
+        }
+        
+        view.onYouTubeButtonTap = {
+            self.output.goToYouTube()
         }
         
         return view
@@ -77,7 +87,7 @@ final class FeedViewController: UIViewController {
         super.viewDidAppear(animated)
         print(type(of: self), #function)
         
-        startTimer()
+//        startTimer()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -126,7 +136,7 @@ final class FeedViewController: UIViewController {
         let constraints = [
             containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 70),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            containerView.heightAnchor.constraint(equalToConstant: 100),
+            containerView.heightAnchor.constraint(equalToConstant: 176),
             containerView.widthAnchor.constraint(equalToConstant: 200),
             
             counterLabel.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20),

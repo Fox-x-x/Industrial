@@ -42,4 +42,16 @@ class FeedCoordinator: FlowCoordinator {
         vc.flowCoordinator = self
         navigationController.pushViewController(vc, animated: true)
     }
+    
+    func goToMusic() {
+        let vc = MusicViewController()
+        vc.flowCoordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func goToYouTube() {
+        let vc = YouTubeViewController()
+        vc.flowCoordinator = self
+        navigationController.pushViewController(vc, animated: true)
+    }
 }
