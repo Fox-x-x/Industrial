@@ -42,6 +42,8 @@
 		93A7093E25BE197E00FBD4AB /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A7093D25BE197E00FBD4AB /* FeedCoordinator.swift */; };
 		93ABE32525421A23008226E6 /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93ABE32425421A23008226E6 /* PhotosTableViewCell.swift */; };
 		93AD1BA025A735B500EB90FA /* PostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AD1B9F25A735B500EB90FA /* PostPresenter.swift */; };
+		93AD953E2607A0D30094CBCE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AD953D2607A0D30094CBCE /* NetworkManager.swift */; };
+		93AD95442607A5F70094CBCE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AD95432607A5F70094CBCE /* AppConfiguration.swift */; };
 		93B20F7F25782EBC00B94C3B /* FindKeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B20F7E25782EBC00B94C3B /* FindKeyWindow.swift */; };
 		93B80EEA25475A4B0062E540 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B80EE925475A4B0062E540 /* PhotosCollectionViewCell.swift */; };
 		93BC83572538D436009F0B86 /* UIImage+Alpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC83562538D436009F0B86 /* UIImage+Alpha.swift */; };
@@ -93,6 +95,8 @@
 		93A7093D25BE197E00FBD4AB /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
 		93ABE32425421A23008226E6 /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		93AD1B9F25A735B500EB90FA /* PostPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPresenter.swift; sourceTree = "<group>"; };
+		93AD953D2607A0D30094CBCE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		93AD95432607A5F70094CBCE /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		93B20F7E25782EBC00B94C3B /* FindKeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindKeyWindow.swift; sourceTree = "<group>"; };
 		93B80EE925475A4B0062E540 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		93BC83562538D436009F0B86 /* UIImage+Alpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Alpha.swift"; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 				93FA76522597940B0086F9B2 /* Checker.swift */,
 				93F555E62598EE2600464512 /* LoginInspector.swift */,
 				93AD1B9F25A735B500EB90FA /* PostPresenter.swift */,
+				93AD95402607A0DD0094CBCE /* Networking */,
 				93A7093725BD98B400FBD4AB /* Coordinators */,
 				935AF8D725A4BE8200F8A9AE /* VIews */,
 				935E0B8C253C52F400DD3585 /* Cells */,
@@ -235,6 +240,15 @@
 				937C074925BF4EB9009BEEF3 /* ProfileCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		93AD95402607A0DD0094CBCE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				93AD953D2607A0D30094CBCE /* NetworkManager.swift */,
+				93AD95432607A5F70094CBCE /* AppConfiguration.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		93DB3837253242030029F730 /* Helpers */ = {
@@ -388,8 +402,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93AD953E2607A0D30094CBCE /* NetworkManager.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				9308757325FE7FF30086D658 /* MusicViewController.swift in Sources */,
+				93AD95442607A5F70094CBCE /* AppConfiguration.swift in Sources */,
 				93A7093225BD7B6C00FBD4AB /* MainCoordinator.swift in Sources */,
 				93A7093A25BD9A0000FBD4AB /* AppCoordinator.swift in Sources */,
 				93396ADB25F3ECF5008149C0 /* GCDTestViewController.swift in Sources */,
