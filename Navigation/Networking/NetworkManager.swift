@@ -8,13 +8,11 @@
 
 import Foundation
 
-//Code=-1009 "The Internet connection appears to be offline."
-
 struct NetworkManager {
     
     static let session = URLSession.shared
     
-    static func dataTask(url: URL, completion: @escaping (String?) -> Void) {
+    static func dataTask(url: URL, completion: @escaping (Data?) -> Void) {
         
         let _ = session.dataTask(with: url) { (data, response, error) in
             
@@ -34,9 +32,13 @@ struct NetworkManager {
             }
             
             if let data = data {
-                completion( String(data: data, encoding: .utf8) )
+                completion(data)
             }
             
         }.resume()
+    }
+    
+    static func JSONToObject(json: Data) throws -> Dictionary<String, Any>? {
+        return try JSONSerialization.jsonObject(with: json, options: .mutableContainers) as? [String: Any]
     }
 }

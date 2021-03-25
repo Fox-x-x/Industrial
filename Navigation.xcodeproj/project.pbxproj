@@ -44,9 +44,11 @@
 		93AD1BA025A735B500EB90FA /* PostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AD1B9F25A735B500EB90FA /* PostPresenter.swift */; };
 		93AD953E2607A0D30094CBCE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AD953D2607A0D30094CBCE /* NetworkManager.swift */; };
 		93AD95442607A5F70094CBCE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93AD95432607A5F70094CBCE /* AppConfiguration.swift */; };
+		93B1411C260BC2A4009511B7 /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B1411B260BC2A4009511B7 /* ToDoItem.swift */; };
 		93B20F7F25782EBC00B94C3B /* FindKeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B20F7E25782EBC00B94C3B /* FindKeyWindow.swift */; };
 		93B80EEA25475A4B0062E540 /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B80EE925475A4B0062E540 /* PhotosCollectionViewCell.swift */; };
 		93BC83572538D436009F0B86 /* UIImage+Alpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC83562538D436009F0B86 /* UIImage+Alpha.swift */; };
+		93C1F269260CFE2A00FE078C /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C1F268260CFE2A00FE078C /* Planet.swift */; };
 		93C8B83A25459004004B72C1 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C8B83925459004004B72C1 /* PhotosViewController.swift */; };
 		93E16BF8257968EE009CB329 /* AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E16BF7257968EE009CB329 /* AutoLayout.swift */; };
 		93F555E72598EE2600464512 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F555E62598EE2600464512 /* LoginInspector.swift */; };
@@ -97,9 +99,11 @@
 		93AD1B9F25A735B500EB90FA /* PostPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPresenter.swift; sourceTree = "<group>"; };
 		93AD953D2607A0D30094CBCE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		93AD95432607A5F70094CBCE /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		93B1411B260BC2A4009511B7 /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 		93B20F7E25782EBC00B94C3B /* FindKeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindKeyWindow.swift; sourceTree = "<group>"; };
 		93B80EE925475A4B0062E540 /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		93BC83562538D436009F0B86 /* UIImage+Alpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Alpha.swift"; sourceTree = "<group>"; };
+		93C1F268260CFE2A00FE078C /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		93C8B83925459004004B72C1 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		93E16BF7257968EE009CB329 /* AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayout.swift; sourceTree = "<group>"; };
 		93F555E62598EE2600464512 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 			children = (
 				93AD953D2607A0D30094CBCE /* NetworkManager.swift */,
 				93AD95432607A5F70094CBCE /* AppConfiguration.swift */,
+				93B1411B260BC2A4009511B7 /* ToDoItem.swift */,
+				93C1F268260CFE2A00FE078C /* Planet.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 				93342C8D25701DD500009DE6 /* FindViewControllerForView.swift in Sources */,
 				930875862602956F0086D658 /* YouTubeVideoViewController.swift in Sources */,
 				93E16BF8257968EE009CB329 /* AutoLayout.swift in Sources */,
+				93B1411C260BC2A4009511B7 /* ToDoItem.swift in Sources */,
 				934F8F73252117FB008269D8 /* ProfileViewController.swift in Sources */,
 				93B80EEA25475A4B0062E540 /* PhotosCollectionViewCell.swift in Sources */,
 				93ABE32525421A23008226E6 /* PhotosTableViewCell.swift in Sources */,
@@ -434,6 +441,7 @@
 				93A7092F25BD7AD900FBD4AB /* Coordinator.swift in Sources */,
 				93FEB0DA25C74F3D005CBBFC /* PhotosModel.swift in Sources */,
 				93BC83572538D436009F0B86 /* UIImage+Alpha.swift in Sources */,
+				93C1F269260CFE2A00FE078C /* Planet.swift in Sources */,
 				930407A5253352D30080D98C /* LogInViewController.swift in Sources */,
 				93087583260287F10086D658 /* YouTubeViewController.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
