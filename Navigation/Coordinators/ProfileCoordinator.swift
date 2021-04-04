@@ -29,8 +29,14 @@ class ProfileCoordinator: FlowCoordinator {
     
     func goToProfile() {
         let vc = ProfileViewController()
+        let loginInspector = LoginInspector()
+        vc.delegate = loginInspector
         vc.flowCoordinator = self
         navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func goToLogin() {
+        start()
     }
     
     func goToPhotos() {
@@ -41,4 +47,5 @@ class ProfileCoordinator: FlowCoordinator {
         navigationController.navigationBar.isHidden = false
         navigationController.pushViewController(view, animated: true)
     }
+    
 }

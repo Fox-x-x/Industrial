@@ -14,6 +14,11 @@ enum ApiError: Error {
     case internalError
     case emptyData
     case songNotFound
+    case wrongPassword
+    case invalidEmail
+    case authError
+    case createUserError
+    case signOutError
 }
 
 func handleApiError(error: ApiError, vc: UIViewController) {
@@ -28,5 +33,15 @@ func handleApiError(error: ApiError, vc: UIViewController) {
         Alert.showAlertError(title: "Нет данных", message: "К сожалению, не удалось получить данные с сервера", on: vc)
     case .songNotFound:
         Alert.showAlertError(title: "Нет песни", message: "К сожалению, не удалось проиграть эту песню, т.к. она отсутствует", on: vc)
+    case .wrongPassword:
+        Alert.showAlertError(title: "Wrong password", message: "Please check your password and try again", on: vc)
+    case .invalidEmail:
+        Alert.showAlertError(title: "Invalid email", message: "The entered email address is malformed", on: vc)
+    case .authError:
+        Alert.showAlertError(title: "Auth error", message: "Some auth error occured :(", on: vc)
+    case .createUserError:
+        Alert.showAlertError(title: "Auth error", message: "There was a problem creating a user :(", on: vc)
+    case .signOutError:
+        Alert.showAlertError(title: "Sign error", message: "There was a problem signing out :(", on: vc)
     }
 }

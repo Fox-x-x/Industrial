@@ -11,6 +11,7 @@ import UIKit
 class ProfileViewController: UIViewController {
     
     weak var flowCoordinator: ProfileCoordinator?
+    var delegate: LoginViewControllerDelegate?
     
     // tableView
     // Добавьте экземпляр класса UITableView и закрепите его к краям экрана.
@@ -124,6 +125,20 @@ extension ProfileViewController: UITableViewDataSource {
         
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: ProfileTableHeaderView.self)) as! ProfileTableHeaderView
         print("section = \(section)")
+        
+        header.onTap = { [weak self] in
+            print("sign out")
+            if let vc = self {
+                if let loginDelegate = vc.delegate {
+                    do {
+                        let _ = try loginDelegate.signOut()
+                        vc.flowCoordinator?.goToLogin()
+                    } catch {
+                        handleApiError(error: .signOutError, vc: vc)
+                    }
+                }
+            }
+        }
 
         return header
         

@@ -35,6 +35,7 @@
 		935E0B8E253C535A00DD3585 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935E0B8D253C535A00DD3585 /* PostTableViewCell.swift */; };
 		935E0B91253C76C500DD3585 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935E0B90253C76C500DD3585 /* Storage.swift */; };
 		937C074A25BF4EB9009BEEF3 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937C074925BF4EB9009BEEF3 /* ProfileCoordinator.swift */; };
+		939C2B9D2610EE1E001A4950 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 939C2B9C2610EE1E001A4950 /* GoogleService-Info.plist */; };
 		93A7092F25BD7AD900FBD4AB /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A7092E25BD7AD900FBD4AB /* Coordinator.swift */; };
 		93A7093225BD7B6C00FBD4AB /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A7093125BD7B6C00FBD4AB /* MainCoordinator.swift */; };
 		93A7093525BD97A300FBD4AB /* FlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A7093425BD97A300FBD4AB /* FlowCoordinator.swift */; };
@@ -90,6 +91,7 @@
 		935E0B8D253C535A00DD3585 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		935E0B90253C76C500DD3585 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		937C074925BF4EB9009BEEF3 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		939C2B9C2610EE1E001A4950 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93A7092E25BD7AD900FBD4AB /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		93A7093125BD7B6C00FBD4AB /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		93A7093425BD97A300FBD4AB /* FlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowCoordinator.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				93743D52259293E700470846 /* Storage */,
 				060782BA250CE27A00A87020 /* Assets.xcassets */,
 				060782BC250CE27A00A87020 /* LaunchScreen.storyboard */,
+				939C2B9C2610EE1E001A4950 /* GoogleService-Info.plist */,
 				060782BF250CE27A00A87020 /* Info.plist */,
 			);
 			path = Navigation;
@@ -350,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9308757A25FEB1500086D658 /* Кувалда — Бетономешалка.mp3 in Resources */,
+				939C2B9D2610EE1E001A4950 /* GoogleService-Info.plist in Resources */,
 				060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */,
 				060782BB250CE27A00A87020 /* Assets.xcassets in Resources */,
 				9308757E25FEB1500086D658 /* Nirvana — Come as You Are.mp3 in Resources */,

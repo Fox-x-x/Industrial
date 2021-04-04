@@ -12,6 +12,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private var statusText: String?
     private let profileViewController = ProfileViewController()
+    var onTap: (() -> Void)?
     
     lazy var avatarImageView: UIImageView = {
         let image = UIImageView()
@@ -68,6 +69,19 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         return button
     }()
     
+    private lazy var signOutButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 4
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.layer.shadowOpacity = 0.7
+        button.backgroundColor = .systemGray3
+        button.setTitleColor(.black, for: .normal)
+        button.setTitle("Sign out", for: .normal)
+        button.addTarget(self, action: #selector(signOutButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var overlayView: UIView = {
         let view = UIView()
         view.frame = UIScreen.main.bounds
@@ -121,7 +135,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         backgroundColor = .systemGray6
         
         // добавляем сабвью
-        addSubviews(fullNameLabel, statusLabel, statusTextField, setStatusButton, avatarImageView)
+        addSubviews(fullNameLabel, signOutButton, statusLabel, statusTextField, setStatusButton, avatarImageView)
         
         // задаем констрейнты
         let constraints = [
@@ -137,8 +151,14 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
             fullNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 16),
             fullNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
+            // sign out button
+            signOutButton.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 8),
+            signOutButton.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
+            signOutButton.trailingAnchor.constraint(equalTo: fullNameLabel.trailingAnchor),
+            signOutButton.heightAnchor.constraint(equalToConstant: 20),
+            
             // статус Label
-            statusLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 32),
+            statusLabel.topAnchor.constraint(equalTo: signOutButton.bottomAnchor, constant: 32),
             statusLabel.leadingAnchor.constraint(equalTo: fullNameLabel.leadingAnchor),
             statusLabel.trailingAnchor.constraint(equalTo: fullNameLabel.trailingAnchor),
             
@@ -166,6 +186,10 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     @objc private func statusButtonPressed() {
         statusLabel.text = statusTextField.text
+    }
+    
+    @objc private func signOutButtonPressed() {
+        onTap?()
     }
     
     @objc private func closeButtonTapped() {

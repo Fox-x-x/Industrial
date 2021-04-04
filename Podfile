@@ -7,5 +7,6 @@ target 'Navigation' do
   pod 'SnapKit', '~> 5.0.0'
   pod 'SwiftyJSON', '~> 4.0'
   pod "SwiftSpinner"
+  pod 'Firebase/Auth'
 
 end

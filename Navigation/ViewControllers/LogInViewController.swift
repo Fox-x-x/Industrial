@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 // Для LoginViewController прописываем протокол делегата LoginViewControllerDelegate. У делегата 2 метода - проверка логина отдельно, пароля отдельно.
 protocol LoginViewControllerDelegate {
-    func checkLogin(_ login: String) -> Bool
-    func checkPass(_ pass: String) -> Bool
+    func loginOrRegisterUser(email: String, pass: String, completion: @escaping (Result<User, ApiError>) -> Void)
+    func signOut() throws
+    func registerUser(email: String, pass: String, completion: @escaping (Result<User, ApiError>) -> Void )
 }
 
 class LogInViewController: UIViewController {
@@ -65,19 +67,23 @@ class LogInViewController: UIViewController {
     // textField для ввода логина
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
+        textField.tag = 0
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.textColor = .black
         textField.placeholder = "Email or phone"
+        textField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         return textField
     }()
     
     // textField для ввода пароля
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
+        textField.tag = 1
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.textColor = .black
         textField.isSecureTextEntry = true
         textField.placeholder = "Password"
+        textField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         return textField
     }()
     
@@ -96,9 +102,10 @@ class LogInViewController: UIViewController {
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel"), for: .normal)
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .highlighted)
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .selected)
-        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .disabled)
+        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.5), for: .disabled)
         button.layer.cornerRadius = 10
         button.clipsToBounds = true
+        button.isEnabled = false
         button.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -142,29 +149,27 @@ class LogInViewController: UIViewController {
         scrollView.verticalScrollIndicatorInsets = .zero
     }
     
-    @objc private func loginButtonPressed() {
-        
-        do {
-            let _ = try auth()
-            flowCoordinator?.goToProfile()
-        } catch ApiError.unauthorized {
-            handleApiError(error: ApiError.unauthorized, vc: self)
-        } catch ApiError.internalError {
-            handleApiError(error: ApiError.internalError, vc: self)
-        } catch {
-            handleApiError(error: ApiError.other, vc: self)
-        }   
+    @objc func textChanged(_ textField: UITextField) {
+        loginButton.isEnabled = ![loginTextField, passwordTextField].contains { $0.text!.isEmpty }
     }
     
-    private func auth() throws -> Bool {
+    @objc private func loginButtonPressed() {
+        
         if let loginDelegate = delegate {
-            if loginDelegate.checkLogin(loginTextField.text!) && loginDelegate.checkPass(passwordTextField.text!) {
-                return true
-            } else {
-                throw ApiError.unauthorized
+            if let email = loginTextField.text, let pass = passwordTextField.text {
+                loginDelegate.loginOrRegisterUser(email: email, pass: pass) { [weak self] (result) in
+                    if let vc = self {
+                        switch result {
+                        case .failure(let error):
+                            handleApiError(error: error, vc: vc)
+                        case .success(let user):
+                            // user можно будет потом передать в ProfileViewController, когда будем подгружать его инфу. Пока не нужно.
+                            vc.flowCoordinator?.goToProfile()
+                        }
+                    }
+                }
             }
-        } else {
-            throw ApiError.internalError
+            
         }
     }
     
@@ -188,7 +193,7 @@ class LogInViewController: UIViewController {
         emailAndPassCommonContainer.addSubviews(separator, passwordContainer, passwordTextField)
         
         // кнопка log in
-        contentView.addSubviewWithAutolayout(loginButton)
+        contentView.addSubviews(loginButton)
         
         let constraints = [
             
@@ -266,6 +271,8 @@ extension LogInViewController: UIScrollViewDelegate {
         print(scrollView.contentOffset.y)
     }
 }
+
+
 
 
 
