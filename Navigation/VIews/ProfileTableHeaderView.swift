@@ -11,7 +11,6 @@ import UIKit
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private var statusText: String?
-    private let profileViewController = ProfileViewController()
     var onTap: (() -> Void)?
     
     lazy var avatarImageView: UIImageView = {

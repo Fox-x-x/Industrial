@@ -13,22 +13,29 @@ class ProfileCoordinator: FlowCoordinator {
     var navigationController: UINavigationController
     weak var mainCoordinator: AppCoordinator?
     
+    private var defaults = UserDefaults.standard
+    
     init(navigationController: UINavigationController, mainCoordinator: AppCoordinator?) {
         self.navigationController = navigationController
         self.mainCoordinator = mainCoordinator
     }
     
     func start() {
-        let vc = LogInViewController()
         let loginInspector = LoginInspector()
-        vc.delegate = loginInspector
-        vc.flowCoordinator = self
-        vc.title = "Profile"
-        navigationController.pushViewController(vc, animated: true)
+        
+        if let userEmail = defaults.object(forKey: "recentUserEmail") as? String {
+            if let user = loginInspector.findUser(email: userEmail), user.wasLogedIn == true {
+                goToProfile(user: user)
+            } else {
+                goToLogin()
+            }
+        } else {
+            goToLogin()
+        }
     }
     
-    func goToProfile() {
-        let vc = ProfileViewController()
+    func goToProfile(user: User) {
+        let vc = ProfileViewController(user: user)
         let loginInspector = LoginInspector()
         vc.delegate = loginInspector
         vc.flowCoordinator = self
@@ -36,7 +43,12 @@ class ProfileCoordinator: FlowCoordinator {
     }
     
     func goToLogin() {
-        start()
+        let loginInspector = LoginInspector()
+        let vc = LogInViewController()
+        vc.delegate = loginInspector
+        vc.flowCoordinator = self
+        vc.title = "Profile"
+        navigationController.pushViewController(vc, animated: true)
     }
     
     func goToPhotos() {
