@@ -8,83 +8,65 @@
 
 import Foundation
 import Firebase
+import RealmSwift
 
 final class LoginInspector: LoginViewControllerDelegate {
     
-    func signOut() throws {
-        do {
-            try Auth.auth().signOut()
-            print("signed out succsessfuly")
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-            throw ApiError.signOutError
+    let realm = try? Realm()
+    
+    // MARK: Realm methods
+    func addUser(email: String, pass: String) -> User {
+        
+        let user = User()
+        
+        user.email = email
+        user.password = pass
+        user.wasLogedIn = true
+        
+        try? realm?.write {
+            realm?.add(user)
+            print("user has been added!")
         }
+        return user
     }
     
-    func registerUser(email: String, pass: String, completion: @escaping (Result<User, ApiError>) -> Void ) {
-        Auth.auth().createUser(withEmail: email, password: pass) { (authResult, error) in
-            if error != nil {
-                print("can not create user")
-                completion(.failure(.createUserError))
-            } else {
-                if let createdUser = authResult?.user {
-                    completion(.success(createdUser))
-                } else {
-                    completion(.failure(.authError))
+    func findUser(email: String) -> User? {
+        
+        let usersArray = realm?.objects(User.self)
+        
+        if let users = usersArray {
+            for user in users {
+                if user.email == email {
+                    return user
                 }
             }
         }
+        return nil
     }
     
-    func loginOrRegisterUser(email: String, pass: String, completion: @escaping (Result<User, ApiError>) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: pass) { [weak self] authResult, error in
-            guard let strongSelf = self else { return }
-            
-            if error != nil {
-                if let error = error as NSError? {
-                    if let errorCode = AuthErrorCode(rawValue: error.code) {
-                        switch errorCode {
-                        case .userNotFound:
-                            // register new user
-                            print("user not found")
-                            strongSelf.registerUser(email: email, pass: pass) { (result) in
-                                switch result {
-                                case .failure(let error):
-                                    completion(.failure(error))
-                                case .success(let user):
-                                    completion(.success(user))
-                                }
-                            }
-                        case .wrongPassword:
-                            // alert
-                            print("wrong password")
-                            completion(.failure(.wrongPassword))
-                        case .invalidEmail:
-                            // alert
-                            print("invalid email")
-                            completion(.failure(.invalidEmail))
-                        default:
-                            // alert
-                            print("other error: \(error.localizedDescription)")
-                            completion(.failure(.authError))
-                        }
-                    }
-                } else {
-                    // alert
-                    print("there was an error")
-                    completion(.failure(.authError))
+    func loginOrRegisterUser(email: String, pass: String) throws -> User {
+        
+        let user = findUser(email: email)
+        
+        if let foundUser = user {
+            if foundUser.password == pass {
+                try? realm?.write {
+                    foundUser.wasLogedIn = true
                 }
+                return foundUser
             } else {
-                // goToProfile
-                print("user has been logged in")
-                if let loggedInUser = authResult?.user {
-                    completion(.success(loggedInUser))
-                } else {
-                    print("other error: cannot get user from FireBase")
-                    completion(.failure(.authError))
-                }
+                throw ApiError.wrongPassword
             }
-            
+        } else {
+            print("User wasn't found")
+            let newUser = addUser(email: email, pass: pass)
+            return newUser
+        }
+    }
+    
+    func signOut(user: User) {
+        try? realm?.write {
+            user.wasLogedIn = false
         }
     }
     

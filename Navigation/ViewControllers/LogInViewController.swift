@@ -9,17 +9,17 @@
 import UIKit
 import Firebase
 
-// Для LoginViewController прописываем протокол делегата LoginViewControllerDelegate. У делегата 2 метода - проверка логина отдельно, пароля отдельно.
 protocol LoginViewControllerDelegate {
-    func loginOrRegisterUser(email: String, pass: String, completion: @escaping (Result<User, ApiError>) -> Void)
-    func signOut() throws
-    func registerUser(email: String, pass: String, completion: @escaping (Result<User, ApiError>) -> Void )
+    func loginOrRegisterUser(email: String, pass: String) throws -> User
+    func signOut(user: User)
 }
 
 class LogInViewController: UIViewController {
     
     var delegate: LoginViewControllerDelegate?
     weak var flowCoordinator: ProfileCoordinator?
+    
+    private var defaults = UserDefaults.standard
     
     // контейнер для всего контента на экране
     private let contentView: UIView = {
@@ -157,19 +157,16 @@ class LogInViewController: UIViewController {
         
         if let loginDelegate = delegate {
             if let email = loginTextField.text, let pass = passwordTextField.text {
-                loginDelegate.loginOrRegisterUser(email: email, pass: pass) { [weak self] (result) in
-                    if let vc = self {
-                        switch result {
-                        case .failure(let error):
-                            handleApiError(error: error, vc: vc)
-                        case .success(let user):
-                            // user можно будет потом передать в ProfileViewController, когда будем подгружать его инфу. Пока не нужно.
-                            vc.flowCoordinator?.goToProfile()
-                        }
-                    }
+                do {
+                    let user = try loginDelegate.loginOrRegisterUser(email: email, pass: pass)
+                    defaults.setValue(user.email, forKey: "recentUserEmail")
+                    flowCoordinator?.goToProfile(user: user)
+                } catch ApiError.wrongPassword {
+                    handleApiError(error: .wrongPassword, vc: self)
+                } catch {
+                    handleApiError(error: .other, vc: self)
                 }
             }
-            
         }
     }
     

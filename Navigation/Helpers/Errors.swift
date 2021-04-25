@@ -19,6 +19,7 @@ enum ApiError: Error {
     case authError
     case createUserError
     case signOutError
+    case userNotFound
 }
 
 func handleApiError(error: ApiError, vc: UIViewController) {
@@ -43,5 +44,8 @@ func handleApiError(error: ApiError, vc: UIViewController) {
         Alert.showAlertError(title: "Auth error", message: "There was a problem creating a user :(", on: vc)
     case .signOutError:
         Alert.showAlertError(title: "Sign error", message: "There was a problem signing out :(", on: vc)
+    case .userNotFound:
+        Alert.showAlertError(title: "Oops!", message: "User not found", on: vc)
     }
+    
 }
