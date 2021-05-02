@@ -20,6 +20,13 @@ class AppCoordinator: MainCoordinator {
         return nc
     }()
     
+    let favoritesNavController: UINavigationController = {
+        let nc = UINavigationController(rootViewController: ProfileViewController(user: User(), isInFavoritesMode: true))
+        nc.tabBarItem.image = UIImage(systemName: "star.fill")
+        nc.title = "Favorites"
+        return nc
+    }()
+    
     let profileNavController: UINavigationController = {
         let nc = UINavigationController()
         nc.tabBarItem.image = UIImage(systemName: "person.fill")
@@ -41,7 +48,7 @@ class AppCoordinator: MainCoordinator {
             $0.start()
         }
 
-        let navControllers = [feedNavController, profileNavController]
+        let navControllers = [feedNavController, favoritesNavController, profileNavController]
         tabBarController.setViewControllers(navControllers, animated: true)
     }
     

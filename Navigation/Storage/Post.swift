@@ -15,5 +15,6 @@ struct Post {
     let image: String
     let likes: Int
     let views: Int
+    let index: Int
     
 }
