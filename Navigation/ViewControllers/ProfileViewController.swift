@@ -12,7 +12,11 @@ class ProfileViewController: UIViewController {
     
     weak var flowCoordinator: ProfileCoordinator?
     var delegate: LoginViewControllerDelegate?
-    var user: User
+    
+    private var user: User
+    private var isInFavoritesMode: Bool
+    
+    private var posts = [Post]()
     
     // tableView
     // Добавьте экземпляр класса UITableView и закрепите его к краям экрана.
@@ -26,8 +30,9 @@ class ProfileViewController: UIViewController {
         return tableView
     }()
     
-    init(user: User) {
+    init(user: User, isInFavoritesMode: Bool) {
         self.user = user
+        self.isInFavoritesMode = isInFavoritesMode
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -39,6 +44,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         setupLayout()
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
     }
     
@@ -46,7 +52,15 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.isHidden = true
+        initPosts()
+        
+        if isInFavoritesMode {
+            navigationController?.navigationBar.isHidden = false
+            title = "Favorites"
+        } else {
+            navigationController?.navigationBar.isHidden = true
+        }
+        
     }
     
     // отдельная функция для добавления view и настройки layout
@@ -64,6 +78,32 @@ class ProfileViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
+    private func initPosts() {
+        
+        posts = []
+        
+        if isInFavoritesMode {
+            let coreDataManager = CoreDataStack(modelName: "FavPostModel")
+            let favoritePosts = coreDataManager.fetchData(for: FavPost.self)
+            
+            for favoritePost in favoritePosts {
+                if let author = favoritePost.author, let description = favoritePost.descr, let image = favoritePost.image {
+                    let post = Post(author: author,
+                                    description: description,
+                                    image: image,
+                                    likes: Int(favoritePost.likes),
+                                    views: Int(favoritePost.views),
+                                    index: Int(favoritePost.index)) // костыль, т.к. Storage статичный
+                    posts.append(post)
+                }
+            }
+        } else {
+            posts = Storage.moviesData
+        }
+        
+        tableView.reloadData()
+    }
+    
     // получает 4 фото (или сколько есть) из массива с фото для ячейки, которая должна содержать 4 фото
     private func getPhotosFromStorage(_ storage: [String]) -> [String] {
         var photos = [String]()
@@ -78,6 +118,42 @@ class ProfileViewController: UIViewController {
         }
         return photos
     }
+    
+    // т.к. Storage хранилище статично, то нужна функция-костыль, которая предотвращает добавление дубликатов в избранное
+    private func isPostInFavorites(post: Post, coreDataManager: CoreDataStack) -> Bool {
+        
+        let favoritePosts = coreDataManager.fetchData(for: FavPost.self)
+        
+        for favoritePost in favoritePosts {
+            if favoritePost.index == post.index {
+                return true
+            }
+        }
+        return false
+    }
+    
+    @objc private func userPostTapped(sender: CustomTapGestureRecognizer) {
+        
+        guard let itemIndex = sender.indexPath?.row else { return }
+        
+        let selectedPost = posts[itemIndex]
+        let coreDataManager = CoreDataStack(modelName: "FavPostModel")
+        
+        if !isPostInFavorites(post: selectedPost, coreDataManager: coreDataManager) {
+            let favoritePost = coreDataManager.createObject(from: FavPost.self)
+            
+            favoritePost.author = selectedPost.author
+            favoritePost.descr = selectedPost.description
+            favoritePost.image = selectedPost.image
+            favoritePost.likes = Int16(selectedPost.likes)
+            favoritePost.views = Int16(selectedPost.views)
+            favoritePost.index = Int16(selectedPost.index)
+            
+            let context = coreDataManager.getContext()
+            coreDataManager.save(context: context)
+        }
+        
+    }
 
 }
 
@@ -86,17 +162,26 @@ extension ProfileViewController: UITableViewDataSource {
     
     // кол-во секций
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        if isInFavoritesMode {
+            return 1
+        } else {
+            return 2
+        }
+        
     }
     
     // кол-во строк
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // если это нулевая секция, в которой должна быть всего 1 ячейка с 4 фото
-        if section == 0 {
-            return 1
+        if isInFavoritesMode {
+            return posts.count
         } else {
-            // в остальных случаях
-            return Storage.moviesData.count
+            // если это нулевая секция, в которой должна быть всего 1 ячейка с 4 фото
+            if section == 0 {
+                return 1
+            } else {
+                // в остальных случаях
+                return posts.count
+            }
         }
         
     }
@@ -104,33 +189,41 @@ extension ProfileViewController: UITableViewDataSource {
     // создаем и наполняем ячейку
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // секция, в которой лежит ячейка с 4 фото
-        if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
-            
-            cell.photos = getPhotosFromStorage(Storage.photos)
-            
-            return cell
-            
-        } else {
-            // остальные секции с постами (по факту на данный момент всего 1 секция)
-            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+            // секция, в которой лежит ячейка с 4 фото
+            if indexPath.section == 0 && isInFavoritesMode == false {
+                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PhotosTableViewCell.self), for: indexPath) as! PhotosTableViewCell
                 
-            cell.post = Storage.moviesData[indexPath.row]
-            
-            // делаем разделитель строк на всю ширину экрана, чтоб красивее смотрелось :)
-            cell.preservesSuperviewLayoutMargins = false
-            cell.separatorInset = UIEdgeInsets.zero
-            cell.layoutMargins = UIEdgeInsets.zero
-            
-            return cell
-        }
+                cell.photos = getPhotosFromStorage(Storage.photos)
+                
+                return cell
+                
+            } else {
+                // остальные секции с постами (по факту на данный момент всего 1 секция)
+                let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: PostTableViewCell.self), for: indexPath) as! PostTableViewCell
+                    
+                cell.post = posts[indexPath.row]
+                
+                if !isInFavoritesMode {
+                    let tapGestureRecognizer = CustomTapGestureRecognizer(target: self, action: #selector(userPostTapped(sender:)))
+                    tapGestureRecognizer.numberOfTapsRequired = 2
+                    tapGestureRecognizer.indexPath = indexPath
+                    cell.addGestureRecognizer(tapGestureRecognizer)
+                }
+                
+                // делаем разделитель строк на всю ширину экрана, чтоб красивее смотрелось :)
+                cell.preservesSuperviewLayoutMargins = false
+                cell.separatorInset = UIEdgeInsets.zero
+                cell.layoutMargins = UIEdgeInsets.zero
+                
+                return cell
+            }
         
     }
     
     // подключаем header для секции, в котором содержится инфо профиля (аватар, статус, итд.)
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
+        guard isInFavoritesMode == false else { return nil }
         guard section == 0 else { return nil }
         
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: String(describing: ProfileTableHeaderView.self)) as! ProfileTableHeaderView
@@ -154,6 +247,8 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: false)
         
         if indexPath.section == 0 && indexPath.row == 0 {
             tableView.deselectRow(at: indexPath, animated: false)

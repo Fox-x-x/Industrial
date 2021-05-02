@@ -25,6 +25,9 @@
 		9308757E25FEB1500086D658 /* Nirvana — Come as You Are.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9308757925FEB1500086D658 /* Nirvana — Come as You Are.mp3 */; };
 		93087583260287F10086D658 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93087582260287F10086D658 /* YouTubeViewController.swift */; };
 		930875862602956F0086D658 /* YouTubeVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930875852602956F0086D658 /* YouTubeVideoViewController.swift */; };
+		932AFDE2263EB981002B512D /* FavPostModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 932AFDE0263EB981002B512D /* FavPostModel.xcdatamodeld */; };
+		932AFDE6263EBA5C002B512D /* FavPost+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932AFDE4263EBA5C002B512D /* FavPost+CoreDataClass.swift */; };
+		932AFDE7263EBA5C002B512D /* FavPost+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932AFDE5263EBA5C002B512D /* FavPost+CoreDataProperties.swift */; };
 		93342C8D25701DD500009DE6 /* FindViewControllerForView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93342C8C25701DD500009DE6 /* FindViewControllerForView.swift */; };
 		93396ADB25F3ECF5008149C0 /* GCDTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93396ADA25F3ECF5008149C0 /* GCDTestViewController.swift */; };
 		9342E95D25F4FBFC003D9897 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342E95C25F4FBFC003D9897 /* Errors.swift */; };
@@ -52,7 +55,9 @@
 		93BC83572538D436009F0B86 /* UIImage+Alpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93BC83562538D436009F0B86 /* UIImage+Alpha.swift */; };
 		93C1F269260CFE2A00FE078C /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C1F268260CFE2A00FE078C /* Planet.swift */; };
 		93C8B83A25459004004B72C1 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C8B83925459004004B72C1 /* PhotosViewController.swift */; };
+		93D0CE6D263B257D007E7E22 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CE6C263B257D007E7E22 /* CoreDataStack.swift */; };
 		93E16BF8257968EE009CB329 /* AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E16BF7257968EE009CB329 /* AutoLayout.swift */; };
+		93E592072639EED3009F2143 /* CustomTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93E592062639EED3009F2143 /* CustomTapGestureRecognizer.swift */; };
 		93F555E72598EE2600464512 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93F555E62598EE2600464512 /* LoginInspector.swift */; };
 		93FA76532597940B0086F9B2 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FA76522597940B0086F9B2 /* Checker.swift */; };
 		93FEB0DA25C74F3D005CBBFC /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93FEB0D925C74F3D005CBBFC /* PhotosModel.swift */; };
@@ -82,6 +87,9 @@
 		9308757925FEB1500086D658 /* Nirvana — Come as You Are.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Nirvana — Come as You Are.mp3"; sourceTree = "<group>"; };
 		93087582260287F10086D658 /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
 		930875852602956F0086D658 /* YouTubeVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeVideoViewController.swift; sourceTree = "<group>"; };
+		932AFDE1263EB981002B512D /* FavPostModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavPostModel.xcdatamodel; sourceTree = "<group>"; };
+		932AFDE4263EBA5C002B512D /* FavPost+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavPost+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		932AFDE5263EBA5C002B512D /* FavPost+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavPost+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		93342C8C25701DD500009DE6 /* FindViewControllerForView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindViewControllerForView.swift; sourceTree = "<group>"; };
 		93396ADA25F3ECF5008149C0 /* GCDTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDTestViewController.swift; sourceTree = "<group>"; };
 		9342E95C25F4FBFC003D9897 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -109,7 +117,9 @@
 		93BC83562538D436009F0B86 /* UIImage+Alpha.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Alpha.swift"; sourceTree = "<group>"; };
 		93C1F268260CFE2A00FE078C /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		93C8B83925459004004B72C1 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		93D0CE6C263B257D007E7E22 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		93E16BF7257968EE009CB329 /* AutoLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoLayout.swift; sourceTree = "<group>"; };
+		93E592062639EED3009F2143 /* CustomTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		93F555E62598EE2600464512 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		93FA76522597940B0086F9B2 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		93FEB0D925C74F3D005CBBFC /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
@@ -152,6 +162,7 @@
 		060782B0250CE27700A87020 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				93D0CE5C263B2073007E7E22 /* CoreDataManager */,
 				060782B1250CE27700A87020 /* AppDelegate.swift */,
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
 				93FA76522597940B0086F9B2 /* Checker.swift */,
@@ -271,10 +282,22 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		93D0CE5C263B2073007E7E22 /* CoreDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				932AFDE4263EBA5C002B512D /* FavPost+CoreDataClass.swift */,
+				932AFDE5263EBA5C002B512D /* FavPost+CoreDataProperties.swift */,
+				93D0CE6C263B257D007E7E22 /* CoreDataStack.swift */,
+				932AFDE0263EB981002B512D /* FavPostModel.xcdatamodeld */,
+			);
+			path = CoreDataManager;
+			sourceTree = "<group>";
+		};
 		93DB3837253242030029F730 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				93BC83562538D436009F0B86 /* UIImage+Alpha.swift */,
+				93E592062639EED3009F2143 /* CustomTapGestureRecognizer.swift */,
 				93342C8C25701DD500009DE6 /* FindViewControllerForView.swift */,
 				93B20F7E25782EBC00B94C3B /* FindKeyWindow.swift */,
 				93E16BF7257968EE009CB329 /* AutoLayout.swift */,
@@ -423,6 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				932AFDE7263EBA5C002B512D /* FavPost+CoreDataProperties.swift in Sources */,
 				93AD953E2607A0D30094CBCE /* NetworkManager.swift in Sources */,
 				060782B6250CE27700A87020 /* FeedViewController.swift in Sources */,
 				9308757325FE7FF30086D658 /* MusicViewController.swift in Sources */,
@@ -448,6 +472,8 @@
 				93E16BF8257968EE009CB329 /* AutoLayout.swift in Sources */,
 				93B1411C260BC2A4009511B7 /* ToDoItem.swift in Sources */,
 				934F8F73252117FB008269D8 /* ProfileViewController.swift in Sources */,
+				932AFDE6263EBA5C002B512D /* FavPost+CoreDataClass.swift in Sources */,
+				932AFDE2263EB981002B512D /* FavPostModel.xcdatamodeld in Sources */,
 				93B80EEA25475A4B0062E540 /* PhotosCollectionViewCell.swift in Sources */,
 				93ABE32525421A23008226E6 /* PhotosTableViewCell.swift in Sources */,
 				935AF8D525A4BD7400F8A9AE /* ContainerView.swift in Sources */,
@@ -458,6 +484,8 @@
 				93FEB0DA25C74F3D005CBBFC /* PhotosModel.swift in Sources */,
 				93BC83572538D436009F0B86 /* UIImage+Alpha.swift in Sources */,
 				93C1F269260CFE2A00FE078C /* Planet.swift in Sources */,
+				93E592072639EED3009F2143 /* CustomTapGestureRecognizer.swift in Sources */,
+				93D0CE6D263B257D007E7E22 /* CoreDataStack.swift in Sources */,
 				930407A5253352D30080D98C /* LogInViewController.swift in Sources */,
 				93087583260287F10086D658 /* YouTubeViewController.swift in Sources */,
 				060782C8250CEE5D00A87020 /* PostViewController.swift in Sources */,
@@ -658,6 +686,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		932AFDE0263EB981002B512D /* FavPostModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				932AFDE1263EB981002B512D /* FavPostModel.xcdatamodel */,
+			);
+			currentVersion = 932AFDE1263EB981002B512D /* FavPostModel.xcdatamodel */;
+			path = FavPostModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 060782A6250CE27700A87020 /* Project object */;
 }

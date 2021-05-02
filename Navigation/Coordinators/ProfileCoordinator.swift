@@ -35,19 +35,20 @@ class ProfileCoordinator: FlowCoordinator {
     }
     
     func goToProfile(user: User) {
-        let vc = ProfileViewController(user: user)
+        let vc = ProfileViewController(user: user, isInFavoritesMode: false)
         let loginInspector = LoginInspector()
         vc.delegate = loginInspector
         vc.flowCoordinator = self
+        vc.title = "Profile"
         navigationController.pushViewController(vc, animated: true)
     }
     
     func goToLogin() {
         let loginInspector = LoginInspector()
         let vc = LogInViewController()
+        vc.title = "Profile"
         vc.delegate = loginInspector
         vc.flowCoordinator = self
-        vc.title = "Profile"
         navigationController.pushViewController(vc, animated: true)
     }
     
