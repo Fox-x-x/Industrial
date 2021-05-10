@@ -50,6 +50,7 @@ class AppCoordinator: MainCoordinator {
 
         let navControllers = [feedNavController, favoritesNavController, profileNavController]
         tabBarController.setViewControllers(navControllers, animated: true)
+        tabBarController.tabBar.isTranslucent = false
     }
     
 }

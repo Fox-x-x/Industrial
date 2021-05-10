@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ProfileViewController: UIViewController {
     
@@ -18,6 +19,11 @@ class ProfileViewController: UIViewController {
     
     private var posts = [Post]()
     
+    private let notificationCenter = NotificationCenter.default
+    private let coreDataManager = CoreDataStack()
+    private lazy var context = coreDataManager.context
+    private lazy var backgroundContext = coreDataManager.backgroundContext
+    
     // tableView
     // Добавьте экземпляр класса UITableView и закрепите его к краям экрана.
     private lazy var tableView: UITableView = {
@@ -28,6 +34,13 @@ class ProfileViewController: UIViewController {
         tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: String(describing: PhotosTableViewCell.self))
         tableView.register(ProfileTableHeaderView.self, forHeaderFooterViewReuseIdentifier: String(describing: ProfileTableHeaderView.self))
         return tableView
+    }()
+    
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.delegate = self
+        searchBar.placeholder = "search by author"
+        return searchBar
     }()
     
     init(user: User, isInFavoritesMode: Bool) {
@@ -42,9 +55,10 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .white
 
         setupLayout()
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
     }
     
@@ -66,26 +80,53 @@ class ProfileViewController: UIViewController {
     // отдельная функция для добавления view и настройки layout
     private func setupLayout() {
         
-        view.addSubviewWithAutolayout(tableView)
+        edgesForExtendedLayout = []
+        navigationController?.navigationBar.isTranslucent = false
         
-        let constraints = [
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ]
+        var constraints = [NSLayoutConstraint]()
+        
+        if isInFavoritesMode {
+            
+            view.addSubviewWithAutolayout(tableView)
+            view.addSubviewWithAutolayout(searchBar)
+            
+            constraints = [
+                searchBar.topAnchor.constraint(equalTo: view.topAnchor),
+                searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                searchBar.heightAnchor.constraint(equalToConstant: 44),
+                
+                tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            ]
+            
+        } else {
+            
+            view.addSubviewWithAutolayout(tableView)
+            
+            constraints = [
+                tableView.topAnchor.constraint(equalTo: view.topAnchor),
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            ]
+            
+        }
         
         NSLayoutConstraint.activate(constraints)
     }
     
-    private func initPosts() {
+    private func initPosts(with request: NSFetchRequest<FavPost> = FavPost.fetchRequest()) {
         
         posts = []
         
         if isInFavoritesMode {
-            let coreDataManager = CoreDataStack(modelName: "FavPostModel")
-            let favoritePosts = coreDataManager.fetchData(for: FavPost.self)
+
+            let favoritePosts = coreDataManager.fetchDataWithRequest(for: FavPost.self, with: context, request: request)
             
+            // конвертируем то, что получили из CoreData, в Post, т.к. основное хранилище (Storage) у нас статично и хранится в таком виде.
             for favoritePost in favoritePosts {
                 if let author = favoritePost.author, let description = favoritePost.descr, let image = favoritePost.image {
                     let post = Post(author: author,
@@ -120,9 +161,9 @@ class ProfileViewController: UIViewController {
     }
     
     // т.к. Storage хранилище статично, то нужна функция-костыль, которая предотвращает добавление дубликатов в избранное
-    private func isPostInFavorites(post: Post, coreDataManager: CoreDataStack) -> Bool {
+    private func isPostInFavorites(post: Post) -> Bool {
         
-        let favoritePosts = coreDataManager.fetchData(for: FavPost.self)
+        let favoritePosts = coreDataManager.fetchData(for: FavPost.self, with: context)
         
         for favoritePost in favoritePosts {
             if favoritePost.index == post.index {
@@ -132,15 +173,24 @@ class ProfileViewController: UIViewController {
         return false
     }
     
+    private func getPost(from arrayOfPosts: [FavPost], withIndex index: Int) -> FavPost? {
+        
+        for post in arrayOfPosts {
+            if post.index == index {
+                return post
+            }
+        }
+        return nil
+    }
+    
     @objc private func userPostTapped(sender: CustomTapGestureRecognizer) {
         
         guard let itemIndex = sender.indexPath?.row else { return }
         
         let selectedPost = posts[itemIndex]
-        let coreDataManager = CoreDataStack(modelName: "FavPostModel")
         
-        if !isPostInFavorites(post: selectedPost, coreDataManager: coreDataManager) {
-            let favoritePost = coreDataManager.createObject(from: FavPost.self)
+        if !isPostInFavorites(post: selectedPost) {
+            let favoritePost = coreDataManager.createObject(from: FavPost.self, with: backgroundContext)
             
             favoritePost.author = selectedPost.author
             favoritePost.descr = selectedPost.description
@@ -149,8 +199,18 @@ class ProfileViewController: UIViewController {
             favoritePost.views = Int16(selectedPost.views)
             favoritePost.index = Int16(selectedPost.index)
             
-            let context = coreDataManager.getContext()
-            coreDataManager.save(context: context)
+            let transformer = StringTransform("Latin; Lower")
+            favoritePost.authorNormalized = favoritePost.author?.applyingTransform(transformer, reverse: false)
+            
+            notificationCenter.addObserver(forName: .NSManagedObjectContextDidSave, object: backgroundContext, queue: nil) { [weak self] notification in
+                if let vc = self {
+                    vc.context.perform {
+                        vc.context.mergeChanges(fromContextDidSave: notification)
+                    }
+                }
+            }
+            
+            coreDataManager.save(context: backgroundContext)
         }
         
     }
@@ -253,6 +313,73 @@ extension ProfileViewController: UITableViewDelegate {
         if indexPath.section == 0 && indexPath.row == 0 {
             tableView.deselectRow(at: indexPath, animated: false)
             flowCoordinator?.goToPhotos()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        if isInFavoritesMode {
+            
+            let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
+                
+                if let vc = self {
+                    
+                    let favoritePosts = vc.coreDataManager.fetchData(for: FavPost.self, with: vc.context)
+                    
+                    if let postToDelete = vc.getPost(from: favoritePosts, withIndex: vc.posts[indexPath.row].index) {
+                        
+                        vc.coreDataManager.delete(object: postToDelete, with: vc.context)
+                        vc.posts.remove(at: indexPath.row)
+                        vc.tableView.performBatchUpdates {
+                            vc.tableView.deleteRows(at: [indexPath], with: .fade)
+                        }
+                        completionHandler(true)
+                    }
+                    
+                }
+                
+            }
+            
+            delete.image = UIImage(systemName: "trash")
+            delete.backgroundColor = .systemRed
+            
+            let swipe = UISwipeActionsConfiguration(actions: [delete])
+            
+            return swipe
+        }
+        
+        return nil
+        
+    }
+    
+}
+
+// MARK: - Search bar methods
+extension ProfileViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        if let searchText = searchBar.text {
+            
+            let request: NSFetchRequest<FavPost> = FavPost.fetchRequest()
+            request.predicate = NSPredicate(format: "authorNormalized MATCHES[cd] %@", searchText)
+            
+            initPosts(with: request)
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchBar.text?.count == 0 {
+            initPosts()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
         }
     }
     
