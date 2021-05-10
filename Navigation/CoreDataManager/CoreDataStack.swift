@@ -11,14 +11,8 @@ import CoreData
 
 final class CoreDataStack {
     
-    private let modelName: String
-    
-    init(modelName: String) {
-        self.modelName = modelName
-    }
-    
-    lazy var persistentStoreContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: self.modelName)
+    static var persistentStoreContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "FavPostModel")
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError()
@@ -27,40 +21,53 @@ final class CoreDataStack {
         return container
     }()
     
-    func getContext()  -> NSManagedObjectContext {
-        persistentStoreContainer.viewContext
+    var context: NSManagedObjectContext {
+        return CoreDataStack.persistentStoreContainer.viewContext
     }
     
+    var backgroundContext: NSManagedObjectContext {
+        return CoreDataStack.persistentStoreContainer.newBackgroundContext()
+    }
     
     func save(context: NSManagedObjectContext) {
-       if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                print(error.localizedDescription)
-            }
+        context.perform {
+            if context.hasChanges {
+                 do {
+                     try context.save()
+                 } catch {
+                     print(error.localizedDescription)
+                 }
+             }
         }
     }
     
-    func createObject<T: NSManagedObject> (from entity: T.Type) -> T {
-        let context = getContext()
-        let object = NSEntityDescription.insertNewObject(forEntityName: String(describing: entity), into: context) as! T
+    func createObject<P: NSManagedObject> (from entity: P.Type, with context: NSManagedObjectContext) -> P {
+        let object = NSEntityDescription.insertNewObject(forEntityName: String(describing: entity), into: context) as! P
         return object
     }
     
-    func delete(object: NSManagedObject) {
-        let context = getContext()
+    func delete(object: NSManagedObject, with context: NSManagedObjectContext) {
         context.delete(object)
         save(context: context)
     }
     
-    func fetchData<T: NSManagedObject>(for entity: T.Type) -> [T] {
-        let context = getContext()
-        let request = entity.fetchRequest() as! NSFetchRequest<T>
+    func fetchData<P: NSManagedObject>(for entity: P.Type, with context: NSManagedObjectContext) -> [P] {
+        let request = entity.fetchRequest() as! NSFetchRequest<P>
         
         do {
             return try context.fetch(request)
         } catch {
+            print("Error fetching data from context")
+            fatalError()
+        }
+    }
+    
+    func fetchDataWithRequest<P: NSManagedObject>(for entity: P.Type, with context: NSManagedObjectContext, request: NSFetchRequest<P>) -> [P] {
+        
+        do {
+            return try context.fetch(request)
+        } catch {
+            print("Error fetching data from context")
             fatalError()
         }
     }
