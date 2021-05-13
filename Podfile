@@ -8,6 +8,6 @@ target 'Navigation' do
   pod 'SwiftyJSON', '~> 4.0'
   pod "SwiftSpinner"
   pod 'Firebase/Auth'
-  pod 'RealmSwift', '=10.1.4'
+  pod 'RealmSwift', '=10.5.2'
 
 end

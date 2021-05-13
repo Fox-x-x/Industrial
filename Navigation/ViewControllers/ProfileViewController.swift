@@ -24,6 +24,8 @@ class ProfileViewController: UIViewController {
     private lazy var context = coreDataManager.context
     private lazy var backgroundContext = coreDataManager.backgroundContext
     
+    private var fetchResultsController: NSFetchedResultsController<FavPost>?
+    
     // tableView
     // Добавьте экземпляр класса UITableView и закрепите его к краям экрана.
     private lazy var tableView: UITableView = {
@@ -123,21 +125,34 @@ class ProfileViewController: UIViewController {
         posts = []
         
         if isInFavoritesMode {
-
-            let favoritePosts = coreDataManager.fetchDataWithRequest(for: FavPost.self, with: context, request: request)
             
-            // конвертируем то, что получили из CoreData, в Post, т.к. основное хранилище (Storage) у нас статично и хранится в таком виде.
-            for favoritePost in favoritePosts {
-                if let author = favoritePost.author, let description = favoritePost.descr, let image = favoritePost.image {
-                    let post = Post(author: author,
-                                    description: description,
-                                    image: image,
-                                    likes: Int(favoritePost.likes),
-                                    views: Int(favoritePost.views),
-                                    index: Int(favoritePost.index)) // костыль, т.к. Storage статичный
-                    posts.append(post)
+            let nameSort = NSSortDescriptor(key: #keyPath(FavPost.authorNormalized), ascending: true)
+            request.sortDescriptors = [nameSort]
+            fetchResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            
+            do {
+                try fetchResultsController?.performFetch()
+            } catch {
+                assertionFailure()
+            }
+            
+            let favoritePosts = fetchResultsController?.fetchedObjects
+            
+            if let favPosts = favoritePosts {
+                // конвертируем то, что получили из CoreData, в Post, т.к. основное хранилище (Storage) у нас статично и хранится в таком виде.
+                for favoritePost in favPosts {
+                    if let author = favoritePost.author, let description = favoritePost.descr, let image = favoritePost.image {
+                        let post = Post(author: author,
+                                        description: description,
+                                        image: image,
+                                        likes: Int(favoritePost.likes),
+                                        views: Int(favoritePost.views),
+                                        index: Int(favoritePost.index)) // костыль, т.к. Storage статичный
+                        posts.append(post)
+                    }
                 }
             }
+            
         } else {
             posts = Storage.moviesData
         }
@@ -163,13 +178,17 @@ class ProfileViewController: UIViewController {
     // т.к. Storage хранилище статично, то нужна функция-костыль, которая предотвращает добавление дубликатов в избранное
     private func isPostInFavorites(post: Post) -> Bool {
         
-        let favoritePosts = coreDataManager.fetchData(for: FavPost.self, with: context)
+//        let favoritePosts = coreDataManager.fetchData(for: FavPost.self, with: context)
+        let favoritePosts = fetchResultsController?.fetchedObjects
         
-        for favoritePost in favoritePosts {
-            if favoritePost.index == post.index {
-                return true
+        if let favoritePosts = favoritePosts {
+            for favoritePost in favoritePosts {
+                if favoritePost.index == post.index {
+                    return true
+                }
             }
         }
+        
         return false
     }
     
@@ -322,9 +341,7 @@ extension ProfileViewController: UITableViewDelegate {
             
             let delete = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (action, view, completionHandler) in
                 
-                if let vc = self {
-                    
-                    let favoritePosts = vc.coreDataManager.fetchData(for: FavPost.self, with: vc.context)
+                if let vc = self, let favoritePosts = vc.fetchResultsController?.fetchedObjects {
                     
                     if let postToDelete = vc.getPost(from: favoritePosts, withIndex: vc.posts[indexPath.row].index) {
                         
