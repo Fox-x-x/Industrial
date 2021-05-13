@@ -129,6 +129,7 @@ class ProfileViewController: UIViewController {
             let nameSort = NSSortDescriptor(key: #keyPath(FavPost.authorNormalized), ascending: true)
             request.sortDescriptors = [nameSort]
             fetchResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+            fetchResultsController?.delegate = self
             
             do {
                 try fetchResultsController?.performFetch()
@@ -343,13 +344,8 @@ extension ProfileViewController: UITableViewDelegate {
                 
                 if let vc = self, let favoritePosts = vc.fetchResultsController?.fetchedObjects {
                     
-                    if let postToDelete = vc.getPost(from: favoritePosts, withIndex: vc.posts[indexPath.row].index) {
-                        
+                    if let postToDelete = vc.getPost(from: favoritePosts, withIndex: vc.posts[indexPath.row].index) {                        
                         vc.coreDataManager.delete(object: postToDelete, with: vc.context)
-                        vc.posts.remove(at: indexPath.row)
-                        vc.tableView.performBatchUpdates {
-                            vc.tableView.deleteRows(at: [indexPath], with: .fade)
-                        }
                         completionHandler(true)
                     }
                     
@@ -400,4 +396,32 @@ extension ProfileViewController: UISearchBarDelegate {
         }
     }
     
+}
+
+extension ProfileViewController: NSFetchedResultsControllerDelegate {
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        
+        case .insert:
+            print("insert")
+            
+        case .delete:
+            print("notification: delete")
+            if let indexPath = indexPath {
+                posts.remove(at: indexPath.row)
+                tableView.performBatchUpdates {
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+            
+        case .move:
+            print("move")
+        case .update:
+            print("update")
+        @unknown default:
+            print("default")
+        }
+    }
 }
