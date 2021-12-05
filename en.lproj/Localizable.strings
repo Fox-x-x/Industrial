@@ -1,0 +1,50 @@
+/*
+  Localization.strings
+  Navigation
+
+  Created by Pavel Yurkov on 09.11.2021.
+  Copyright © 2021 Artem Novichkov. All rights reserved.
+*/
+
+// MARK: - Tab bar
+"feed" = "Feed";
+"fav" = "Favorites";
+"profile" = "Profile";
+
+// MARK: - Feed VC
+"feed-title" = "Feed";
+"open-post" = "Open post";
+"open-another-post" = "Open another post";
+"music" = "Music";
+"youtube" = "Youtube";
+"time-left" = "Time left:";
+
+// MARK: - Profile
+"sign-out" = "Sign out";
+"status-label" = "Waiting for something...";
+"status-placeholder" = "Type your text here";
+"status-button" = "Show status";
+"photos" = "Photos";
+"likes" = "Likes: ";
+"views" = "Views: ";
+
+// MARK: - Profile fav
+"search-placeholder" = "Search by author";
+
+// MARK: - Movies Storage
+"mementoName" = "Memento";
+"mementoDescr" = "A man with short-term memory loss attempts to track down his wife's murderer.";
+"prestigeName" = "The Prestige";
+"prestigeDescr" = "After a tragic accident, two stage magicians in 1890s London engage in a battle to create the ultimate illusion while sacrificing everything they have to outwit each other.";
+"darkNightName" = "The Dark Knight";
+"darkNightDescr" = "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.";
+"inceptionName" = "Inception";
+"inceptionDescr" = "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.";
+
+// MARK: - Info VC
+"deletePostButtonName" = "Delete post";
+"deletePostAlertName" = "Delete post?";
+"deletePostAlertDescr" = "It will not be possible to recover it";
+"cancel" = "Cancel";
+"delete" = "Delete";
+"orbitalPeriod" = " orbital period: ";
