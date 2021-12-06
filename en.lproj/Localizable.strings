@@ -48,3 +48,30 @@
 "cancel" = "Cancel";
 "delete" = "Delete";
 "orbitalPeriod" = " orbital period: ";
+
+// MARK: - Errors
+"oops" = "Oops!";
+"authError" = "Auth error";
+"noData" = "No data";
+"noSong" = "No song";
+"wrongPass" = "Wrong password";
+"invalidEmail" = "Invalid email";
+"signError" = "Sign error";
+
+
+"unknownError" = "Unknown error occured";
+"internalError" = "Internal error occured";
+"wrongLoginPass" = "Wrong username or password";
+"serverDataError" = "Cannot retrieve data from server";
+"songError" = "Cannot play the song, there isn't one";
+"checkPassError" = "Please check your password and try again";
+"malformedEmailError" = "The entered email address is malformed";
+"someAuthError" = "Some auth error occured :(";
+"creatUsertError" = "There was a problem creating a user :(";
+"signOutError" = "There was a problem signing out :(";
+"userNotFoundError" = "User not found";
+
+// MARK: - Errors
+"emailOrPhone" = "email or phone";
+"password" = "password";
+"loginButtonText" = "Log in";

@@ -14,7 +14,9 @@ enum Localization {
          signOutButton, statusLabelName, statusPlaceholder, showStatusButtonName, photoSectionName, likesLabelName, viewsLabelName,
          searchPlaceholderName,
          mementoName, mementoDescr, prestigeName, prestigeDescr, darkNightName, darkNightDescr, inceptionName, inceptionDescr,
-         deletePostButtonName, deletePostAlertName, deletePostAlertDescr, cancel, delete, orbitalPeriod
+         deletePostButtonName, deletePostAlertName, deletePostAlertDescr, cancel, delete, orbitalPeriod,
+         oops, authError, noData, noSong, wrongPass, invalidEmail, signError,
+         emailOrPhone, password, loginButtonText
     
     var localizedValue: String {
         switch self {
@@ -111,6 +113,36 @@ enum Localization {
             case .orbitalPeriod:
                 let text = NSLocalizedString("orbitalPeriod", comment: "delete post vc")
                 return text
-        }
+            case .oops:
+                let text = NSLocalizedString("oops", comment: "ApiErro")
+                return text
+            case .authError:
+                let text = NSLocalizedString("authError", comment: "ApiErro")
+                return text
+            case .noData:
+                let text = NSLocalizedString("noData", comment: "ApiErro")
+                return text
+            case .noSong:
+                let text = NSLocalizedString("noSong", comment: "ApiErro")
+                return text
+            case .wrongPass:
+                let text = NSLocalizedString("wrongPass", comment: "ApiErro")
+                return text
+            case .invalidEmail:
+                let text = NSLocalizedString("invalidEmail", comment: "ApiErro")
+                return text
+            case .signError:
+                let text = NSLocalizedString("signError", comment: "ApiErro")
+                return text
+            case .emailOrPhone:
+                let text = NSLocalizedString("emailOrPhone", comment: "login VC")
+                return text
+            case .password:
+                let text = NSLocalizedString("password", comment: "login VC")
+                return text
+            case .loginButtonText:
+                let text = NSLocalizedString("loginButtonText", comment: "login VC")
+                return text
+            }
     }
 }

@@ -16,7 +16,7 @@ class InfoViewController: UIViewController {
         let button = UIButton()
         button.backgroundColor = .orange
         button.setTitleColor(.blue, for: .normal)
-        button.setTitle("Delete post", for: .normal)
+        button.setTitle(Localization.deletePostButtonName.localizedValue, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         button.addTarget(self, action: #selector(deletePostButtonTapped), for: .touchUpInside)
         return button
@@ -88,7 +88,7 @@ class InfoViewController: UIViewController {
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
                     if let planet = try? decoder.decode(Planet.self, from: result) {
                         DispatchQueue.main.async {
-                            self.planetLabel.text = planet.name + " orbital period: " + planet.orbitalPeriod
+                            self.planetLabel.text = planet.name + Localization.orbitalPeriod.localizedValue + planet.orbitalPeriod
                         }
                     }
                 }
@@ -98,11 +98,11 @@ class InfoViewController: UIViewController {
     }
     
     @objc private func deletePostButtonTapped() {
-        let alertController = UIAlertController(title: "Удалить пост?", message: "Пост нельзя будет восстановить", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Отмена", style: .default) { _ in
+        let alertController = UIAlertController(title: Localization.deletePostAlertName.localizedValue, message: Localization.deletePostAlertDescr.localizedValue, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: Localization.cancel.localizedValue, style: .default) { _ in
             print("Отмена")
         }
-        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+        let deleteAction = UIAlertAction(title: Localization.delete.localizedValue, style: .destructive) { _ in
             print("Удалить")
         }
         alertController.addAction(cancelAction)

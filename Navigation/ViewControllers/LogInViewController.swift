@@ -70,7 +70,7 @@ class LogInViewController: UIViewController {
         textField.tag = 0
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.textColor = .black
-        textField.placeholder = "Email or phone"
+        textField.placeholder = Localization.emailOrPhone.localizedValue
         textField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         return textField
     }()
@@ -82,7 +82,7 @@ class LogInViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         textField.textColor = .black
         textField.isSecureTextEntry = true
-        textField.placeholder = "Password"
+        textField.placeholder = Localization.password.localizedValue
         textField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         return textField
     }()
@@ -97,7 +97,7 @@ class LogInViewController: UIViewController {
     // кнопка Log in
     private lazy var loginButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Log In", for: .normal)
+        button.setTitle(Localization.loginButtonText.localizedValue, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel"), for: .normal)
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .highlighted)

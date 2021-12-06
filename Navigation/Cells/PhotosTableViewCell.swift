@@ -71,7 +71,7 @@ class PhotosTableViewCell: UITableViewCell {
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.textColor = .black
         label.numberOfLines = 1
-        label.text = "Photos"
+        label.text = Localization.photoSectionName.localizedValue
         return label
     }()
     

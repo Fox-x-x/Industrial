@@ -38,7 +38,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         label.textColor = .gray
-        label.text = "Waiting for something..."
+        label.text = Localization.statusLabelName.localizedValue
         label.sizeToFit()
         return label
     }()
@@ -51,7 +51,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 12
         textField.layer.borderColor = UIColor.black.cgColor
-        textField.placeholder = "Type your text here"
+        textField.placeholder = Localization.statusPlaceholder.localizedValue
         return textField
     }()
     
@@ -63,7 +63,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         button.layer.shadowOpacity = 0.7
         button.backgroundColor = .blue
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("Show status", for: .normal)
+        button.setTitle(Localization.showStatusButtonName.localizedValue, for: .normal)
         button.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -76,7 +76,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         button.layer.shadowOpacity = 0.7
         button.backgroundColor = .systemGray3
         button.setTitleColor(.black, for: .normal)
-        button.setTitle("Sign out", for: .normal)
+        button.setTitle(Localization.signOutButton.localizedValue, for: .normal)
         button.addTarget(self, action: #selector(signOutButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -115,6 +115,8 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         super.init(reuseIdentifier: reuseIdentifier)
         
         setupViews()
+        
+//        signOutButton.setTitle(Localization.someKey.localizedValue, for: .normal)
         
     }
     
