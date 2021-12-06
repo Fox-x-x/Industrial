@@ -21,7 +21,7 @@ class FeedCoordinator: FlowCoordinator {
     
     func start() {
         let vc = FeedViewController(output: postPresenter)
-        vc.title = "Feed"
+        vc.title = Localization.feedTitle.localizedValue
         navigationController.pushViewController(vc, animated: true)
     }
     

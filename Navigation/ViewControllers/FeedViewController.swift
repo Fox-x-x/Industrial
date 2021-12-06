@@ -80,7 +80,7 @@ final class FeedViewController: UIViewController {
         super.viewWillAppear(animated)
         print(type(of: self), #function)
         
-        counterLabel.text = "Осталось:"
+        counterLabel.text = Localization.timeLeft.localizedValue
     }
     
     override func viewDidAppear(_ animated: Bool) {

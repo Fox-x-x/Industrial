@@ -38,6 +38,8 @@
 		936DB5CB2630B8AF009A7E42 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936DB5CA2630B8AF009A7E42 /* User.swift */; };
 		937451A32649A58F0033EBA3 /* FavPost+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937451A12649A58F0033EBA3 /* FavPost+CoreDataClass.swift */; };
 		937451A42649A58F0033EBA3 /* FavPost+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937451A22649A58F0033EBA3 /* FavPost+CoreDataProperties.swift */; };
+		937A59D6275D40FA00E2208E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 937A59D8275D40FA00E2208E /* Localizable.strings */; };
+		937A59DC275D41E700E2208E /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937A59DB275D41E700E2208E /* Localization.swift */; };
 		937C074A25BF4EB9009BEEF3 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937C074925BF4EB9009BEEF3 /* ProfileCoordinator.swift */; };
 		939C2B9D2610EE1E001A4950 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 939C2B9C2610EE1E001A4950 /* GoogleService-Info.plist */; };
 		93A7092F25BD7AD900FBD4AB /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A7092E25BD7AD900FBD4AB /* Coordinator.swift */; };
@@ -100,6 +102,10 @@
 		936DB5CA2630B8AF009A7E42 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		937451A12649A58F0033EBA3 /* FavPost+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavPost+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		937451A22649A58F0033EBA3 /* FavPost+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavPost+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		937A59D7275D40FA00E2208E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		937A59D9275D411F00E2208E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		937A59DA275D414500E2208E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		937A59DB275D41E700E2208E /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		937C074925BF4EB9009BEEF3 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		939C2B9C2610EE1E001A4950 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93A7092E25BD7AD900FBD4AB /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -143,6 +149,7 @@
 		060782A5250CE27700A87020 = {
 			isa = PBXGroup;
 			children = (
+				937A59D8275D40FA00E2208E /* Localizable.strings */,
 				060782B0250CE27700A87020 /* Navigation */,
 				9308758025FEB15B0086D658 /* Music */,
 				060782AF250CE27700A87020 /* Products */,
@@ -303,6 +310,7 @@
 				93E16BF7257968EE009CB329 /* AutoLayout.swift */,
 				9342E95C25F4FBFC003D9897 /* Errors.swift */,
 				935ADC2C25F68F8D00FC3DBE /* Alert.swift */,
+				937A59DB275D41E700E2208E /* Localization.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -370,6 +378,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 060782A5250CE27700A87020;
 			productRefGroup = 060782AF250CE27700A87020 /* Products */;
@@ -390,6 +399,7 @@
 				939C2B9D2610EE1E001A4950 /* GoogleService-Info.plist in Resources */,
 				060782BE250CE27A00A87020 /* LaunchScreen.storyboard in Resources */,
 				060782BB250CE27A00A87020 /* Assets.xcassets in Resources */,
+				937A59D6275D40FA00E2208E /* Localizable.strings in Resources */,
 				9308757E25FEB1500086D658 /* Nirvana — Come as You Are.mp3 in Resources */,
 				9308757B25FEB1500086D658 /* Metallica — Enter Sandman.mp3 in Resources */,
 				9308757D25FEB1500086D658 /* The Pretty Reckless — Just Tonight.mp3 in Resources */,
@@ -484,6 +494,7 @@
 				93FEB0DA25C74F3D005CBBFC /* PhotosModel.swift in Sources */,
 				93BC83572538D436009F0B86 /* UIImage+Alpha.swift in Sources */,
 				93C1F269260CFE2A00FE078C /* Planet.swift in Sources */,
+				937A59DC275D41E700E2208E /* Localization.swift in Sources */,
 				93E592072639EED3009F2143 /* CustomTapGestureRecognizer.swift in Sources */,
 				93D0CE6D263B257D007E7E22 /* CoreDataStack.swift in Sources */,
 				930407A5253352D30080D98C /* LogInViewController.swift in Sources */,
@@ -503,8 +514,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				060782BD250CE27A00A87020 /* Base */,
+				937A59D9275D411F00E2208E /* ru */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		937A59D8275D40FA00E2208E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				937A59D7275D40FA00E2208E /* en */,
+				937A59DA275D414500E2208E /* ru */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -514,6 +535,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -567,6 +589,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -575,6 +598,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -621,6 +645,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -634,7 +659,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79RZ866842;
 				INFOPLIST_FILE = Navigation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -654,7 +679,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 79RZ866842;
 				INFOPLIST_FILE = Navigation/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

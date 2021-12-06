@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController {
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.delegate = self
-        searchBar.placeholder = "search by author"
+        searchBar.placeholder = Localization.searchPlaceholderName.localizedValue
         return searchBar
     }()
     
@@ -59,6 +59,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        navigationController?.view.backgroundColor = .white
 
         setupLayout()
         
@@ -72,7 +73,7 @@ class ProfileViewController: UIViewController {
         
         if isInFavoritesMode {
             navigationController?.navigationBar.isHidden = false
-            title = "Favorites"
+            title = Localization.fav.localizedValue
         } else {
             navigationController?.navigationBar.isHidden = true
         }
@@ -344,7 +345,7 @@ extension ProfileViewController: UITableViewDelegate {
                 
                 if let vc = self, let favoritePosts = vc.fetchResultsController?.fetchedObjects {
                     
-                    if let postToDelete = vc.getPost(from: favoritePosts, withIndex: vc.posts[indexPath.row].index) {                        
+                    if let postToDelete = vc.getPost(from: favoritePosts, withIndex: vc.posts[indexPath.row].index) {
                         vc.coreDataManager.delete(object: postToDelete, with: vc.context)
                         completionHandler(true)
                     }

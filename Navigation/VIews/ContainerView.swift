@@ -19,7 +19,7 @@ class ContainerView: UIView {
         let button = UIButton()
         button.backgroundColor = .orange
         button.setTitleColor(.blue, for: .normal)
-        button.setTitle("Open Post", for: .normal)
+        button.setTitle(Localization.openPost.localizedValue, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         button.addTarget(self, action: #selector(openPostButtonTapped), for: .touchUpInside)
         return button
@@ -29,7 +29,7 @@ class ContainerView: UIView {
         let button = UIButton()
         button.backgroundColor = .orange
         button.setTitleColor(.blue, for: .normal)
-        button.setTitle("Open Another Post", for: .normal)
+        button.setTitle(Localization.openAnotherPost.localizedValue, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         button.addTarget(self, action: #selector(openAnotherPostButtonTapped), for: .touchUpInside)
         return button
@@ -39,7 +39,7 @@ class ContainerView: UIView {
         let button = UIButton()
         button.backgroundColor = .orange
         button.setTitleColor(.blue, for: .normal)
-        button.setTitle("Music", for: .normal)
+        button.setTitle(Localization.music.localizedValue, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         button.addTarget(self, action: #selector(musicButtonTapped), for: .touchUpInside)
         return button
@@ -49,7 +49,7 @@ class ContainerView: UIView {
         let button = UIButton()
         button.backgroundColor = .orange
         button.setTitleColor(.blue, for: .normal)
-        button.setTitle("YouTube", for: .normal)
+        button.setTitle(Localization.youTube.localizedValue, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         button.addTarget(self, action: #selector(youTubeButtonTapped), for: .touchUpInside)
         return button

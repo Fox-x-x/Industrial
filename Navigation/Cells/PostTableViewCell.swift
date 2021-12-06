@@ -18,8 +18,8 @@ class PostTableViewCell: UITableViewCell {
             authorLabel.text = post.author
             postImage.image = UIImage(named: post.image)
             descriptionLabel.text = post.description
-            likesLabel.text = "Likes: " + String(post.likes)
-            viewsLabel.text = "Views: " + String(post.views)
+            likesLabel.text = Localization.likesLabelName.localizedValue + String(post.likes)
+            viewsLabel.text = Localization.viewsLabelName.localizedValue + String(post.views)
             
         }
     }

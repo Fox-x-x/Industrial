@@ -39,14 +39,14 @@ class ProfileCoordinator: FlowCoordinator {
         let loginInspector = LoginInspector()
         vc.delegate = loginInspector
         vc.flowCoordinator = self
-        vc.title = "Profile"
+        vc.title = Localization.profile.localizedValue
         navigationController.pushViewController(vc, animated: true)
     }
     
     func goToLogin() {
         let loginInspector = LoginInspector()
         let vc = LogInViewController()
-        vc.title = "Profile"
+        vc.title = Localization.profile.localizedValue
         vc.delegate = loginInspector
         vc.flowCoordinator = self
         navigationController.pushViewController(vc, animated: true)
