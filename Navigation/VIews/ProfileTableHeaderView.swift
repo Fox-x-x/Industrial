@@ -28,7 +28,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        label.textColor = .black
+        label.textColor = UIColor.createColor(lightMode: ColorPalette.fourthColorLight, darkMode: ColorPalette.fourthColorDark)
         label.text = "Pavel Yurkov"
         label.sizeToFit()
         return label
@@ -45,12 +45,11 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private lazy var statusTextField: UITextField = {
         let textField = UITextField()
-        textField.backgroundColor = .white
         textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        textField.textColor = .black
+        textField.textColor = UIColor.createColor(lightMode: ColorPalette.secondaryColorLight, darkMode: ColorPalette.secondaryColorDark)
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 12
-        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderColor = UIColor.systemGray5.cgColor
         textField.placeholder = Localization.statusPlaceholder.localizedValue
         return textField
     }()
@@ -61,7 +60,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowOpacity = 0.7
-        button.backgroundColor = .blue
+        button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
         button.setTitle(Localization.showStatusButtonName.localizedValue, for: .normal)
         button.addTarget(self, action: #selector(statusButtonPressed), for: .touchUpInside)
@@ -116,8 +115,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         
         setupViews()
         
-//        signOutButton.setTitle(Localization.someKey.localizedValue, for: .normal)
-        
     }
     
     override func layoutSubviews() {
@@ -133,7 +130,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private func setupViews() {
         
-        backgroundColor = .systemGray6
+        contentView.backgroundColor = .systemGray6
         
         // добавляем сабвью
         addSubviews(fullNameLabel, signOutButton, statusLabel, statusTextField, setStatusButton, avatarImageView)

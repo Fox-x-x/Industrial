@@ -24,6 +24,7 @@ class LogInViewController: UIViewController {
     // контейнер для всего контента на экране
     private let contentView: UIView = {
         let view = UIView()
+        view.backgroundColor = UIColor.createColor(lightMode: ColorPalette.primaryColorLight, darkMode: ColorPalette.primaryColorDark)
         return view
     }()
     
@@ -32,6 +33,7 @@ class LogInViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delegate = self
+        view.backgroundColor = UIColor.createColor(lightMode: ColorPalette.primaryColorLight, darkMode: ColorPalette.primaryColorDark)
         return scrollView
     }()
     
@@ -69,7 +71,7 @@ class LogInViewController: UIViewController {
         let textField = UITextField()
         textField.tag = 0
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        textField.textColor = .black
+        textField.textColor = UIColor.createColor(lightMode: ColorPalette.secondaryColorLight, darkMode: ColorPalette.secondaryColorDark)
         textField.placeholder = Localization.emailOrPhone.localizedValue
         textField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)
         return textField
@@ -80,7 +82,7 @@ class LogInViewController: UIViewController {
         let textField = UITextField()
         textField.tag = 1
         textField.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        textField.textColor = .black
+        textField.textColor = UIColor.createColor(lightMode: ColorPalette.secondaryColorLight, darkMode: ColorPalette.secondaryColorDark)
         textField.isSecureTextEntry = true
         textField.placeholder = Localization.password.localizedValue
         textField.addTarget(self, action: #selector(textChanged(_:)), for: .editingChanged)

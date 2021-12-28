@@ -41,6 +41,8 @@ final class PhotosCollectionViewCell: UICollectionViewCell {
 // добавляем photoImageView в корневую contentView и задаем констрейнты
 private extension PhotosCollectionViewCell {
     func setupLayout() {
+        contentView.backgroundColor = UIColor.createColor(lightMode: ColorPalette.secondaryColorLight, darkMode: ColorPalette.secondaryColorDark)
+        
         contentView.addSubviewWithAutolayout(photoImageView)
         
         let constraints = [

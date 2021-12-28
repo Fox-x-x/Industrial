@@ -23,7 +23,7 @@ class PhotosView: UIViewController {
         )
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = UIColor.createColor(lightMode: ColorPalette.thirdColorLight, darkMode: ColorPalette.thirdColorDark)
         return collectionView
     }()
     
