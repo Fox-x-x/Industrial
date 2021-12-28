@@ -24,6 +24,16 @@ class AppCoordinator: MainCoordinator {
         let nc = UINavigationController(rootViewController: ProfileViewController(user: User(), isInFavoritesMode: true))
         nc.tabBarItem.image = UIImage(systemName: "star.fill")
         nc.title = Localization.fav.localizedValue
+        if #available(iOS 15, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = UIColor.createColor(lightMode: ColorPalette.thirdColorLight, darkMode: ColorPalette.thirdColorDark)
+            UINavigationBar.appearance().standardAppearance = appearance
+            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        } else {
+            nc.navigationBar.barTintColor = UIColor.createColor(lightMode: ColorPalette.thirdColorLight, darkMode: ColorPalette.thirdColorDark)
+        }
+        
         return nc
     }()
     
@@ -54,10 +64,12 @@ class AppCoordinator: MainCoordinator {
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = .white
+            appearance.backgroundColor = UIColor.createColor(lightMode: ColorPalette.thirdColorLight, darkMode: ColorPalette.thirdColorDark)
                 
             tabBarController.tabBar.standardAppearance = appearance
             tabBarController.tabBar.scrollEdgeAppearance = tabBarController.tabBar.standardAppearance
+        } else {
+            tabBarController.tabBar.barTintColor = UIColor.createColor(lightMode: ColorPalette.primaryColorLight, darkMode: ColorPalette.primaryColorDark)
         }
         
     }

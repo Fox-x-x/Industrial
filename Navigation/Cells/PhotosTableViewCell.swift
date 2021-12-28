@@ -69,7 +69,7 @@ class PhotosTableViewCell: UITableViewCell {
     private let photosLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        label.textColor = .black
+        label.textColor = UIColor.createColor(lightMode: ColorPalette.fourthColorLight, darkMode: ColorPalette.fourthColorDark)
         label.numberOfLines = 1
         label.text = Localization.photoSectionName.localizedValue
         return label
@@ -78,7 +78,8 @@ class PhotosTableViewCell: UITableViewCell {
     // стрелка
     private let arrowImage: UIImageView = {
         let image = UIImageView()
-        image.image = #imageLiteral(resourceName: "arrow")
+        image.image = UIImage(systemName: "arrow.right")
+        image.tintColor = UIColor.createColor(lightMode: ColorPalette.fourthColorLight, darkMode: ColorPalette.fourthColorDark)
         image.contentMode = .scaleAspectFit
         return image
     }()

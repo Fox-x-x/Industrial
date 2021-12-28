@@ -29,7 +29,7 @@ class PostTableViewCell: UITableViewCell {
     private let authorLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        label.textColor = .black
+        label.textColor = UIColor.createColor(lightMode: ColorPalette.fourthColorLight, darkMode: ColorPalette.fourthColorDark)
         label.numberOfLines = 2
         return label
     }()
@@ -55,7 +55,7 @@ class PostTableViewCell: UITableViewCell {
     private let likesLabel: UILabel = {
         let likes = UILabel()
         likes.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        likes.textColor = .black
+        likes.textColor = UIColor.createColor(lightMode: ColorPalette.fourthColorLight, darkMode: ColorPalette.fourthColorDark)
         return likes
     }()
     
@@ -63,7 +63,7 @@ class PostTableViewCell: UITableViewCell {
     private let viewsLabel: UILabel = {
         let views = UILabel()
         views.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        views.textColor = .black
+        views.textColor = UIColor.createColor(lightMode: ColorPalette.fourthColorLight, darkMode: ColorPalette.fourthColorDark)
         return views
     }()
     

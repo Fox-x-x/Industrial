@@ -71,7 +71,7 @@ final class FeedViewController: UIViewController {
         super.viewDidLoad()
         print(type(of: self), #function)
         
-        view.backgroundColor = .systemGreen
+        view.backgroundColor = UIColor.createColor(lightMode: ColorPalette.fifthColorLight, darkMode: ColorPalette.fifthColorDark)
         
         setupViews()
     }
