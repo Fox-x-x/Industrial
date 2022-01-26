@@ -43,6 +43,7 @@
 		937A59D6275D40FA00E2208E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 937A59D8275D40FA00E2208E /* Localizable.strings */; };
 		937A59DC275D41E700E2208E /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937A59DB275D41E700E2208E /* Localization.swift */; };
 		937C074A25BF4EB9009BEEF3 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937C074925BF4EB9009BEEF3 /* ProfileCoordinator.swift */; };
+		9384E5FA279F47A3000059B3 /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9384E5F9279F47A3000059B3 /* LocalAuthorizationService.swift */; };
 		9398072E279D90AD00910314 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9398072D279D90AD00910314 /* LocalNotificationsService.swift */; };
 		939C2B9D2610EE1E001A4950 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 939C2B9C2610EE1E001A4950 /* GoogleService-Info.plist */; };
 		93A7092F25BD7AD900FBD4AB /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A7092E25BD7AD900FBD4AB /* Coordinator.swift */; };
@@ -112,6 +113,7 @@
 		937A59DA275D414500E2208E /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		937A59DB275D41E700E2208E /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		937C074925BF4EB9009BEEF3 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		9384E5F9279F47A3000059B3 /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		9398072D279D90AD00910314 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		939C2B9C2610EE1E001A4950 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93A7092E25BD7AD900FBD4AB /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -180,11 +182,12 @@
 				060782B3250CE27700A87020 /* SceneDelegate.swift */,
 				93FA76522597940B0086F9B2 /* Checker.swift */,
 				93F555E62598EE2600464512 /* LoginInspector.swift */,
-				936DB5CD2630B8C6009A7E42 /* Auth model */,
 				93AD1B9F25A735B500EB90FA /* PostPresenter.swift */,
+				936DB5CD2630B8C6009A7E42 /* Auth model */,
 				934F8F6E2521177E008269D8 /* ViewControllers */,
 				93AD95402607A0DD0094CBCE /* Networking */,
 				93A7093725BD98B400FBD4AB /* Coordinators */,
+				9384E5FB279F47B7000059B3 /* Authorization Service */,
 				9398072F279D90C700910314 /* Notifications */,
 				935AF8D725A4BE8200F8A9AE /* VIews */,
 				935E0B8C253C52F400DD3585 /* Cells */,
@@ -270,6 +273,14 @@
 				935E0B90253C76C500DD3585 /* Storage.swift */,
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		9384E5FB279F47B7000059B3 /* Authorization Service */ = {
+			isa = PBXGroup;
+			children = (
+				9384E5F9279F47A3000059B3 /* LocalAuthorizationService.swift */,
+			);
+			path = "Authorization Service";
 			sourceTree = "<group>";
 		};
 		9398072F279D90C700910314 /* Notifications */ = {
@@ -492,6 +503,7 @@
 				9353F3502778F9FF0036BD78 /* UIColorUserInterfaceStyle.swift in Sources */,
 				937C074A25BF4EB9009BEEF3 /* ProfileCoordinator.swift in Sources */,
 				060782CA250CEE7200A87020 /* Post.swift in Sources */,
+				9384E5FA279F47A3000059B3 /* LocalAuthorizationService.swift in Sources */,
 				93F555E72598EE2600464512 /* LoginInspector.swift in Sources */,
 				934F8F70252117CC008269D8 /* ProfileTableHeaderView.swift in Sources */,
 				060782B4250CE27700A87020 /* SceneDelegate.swift in Sources */,
@@ -677,14 +689,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 79RZ866842;
+				DEVELOPMENT_TEAM = WY4KC73HRC;
 				INFOPLIST_FILE = Navigation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.artemnovichkov.Navigation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ypspost.Navigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
