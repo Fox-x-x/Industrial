@@ -112,6 +112,22 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    // кнопка FaceID
+    private var loginWithFaceIDButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("FaceID", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel"), for: .normal)
+        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .highlighted)
+        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.8), for: .selected)
+        button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel").alpha(0.5), for: .disabled)
+        button.layer.cornerRadius = 10
+        button.clipsToBounds = true
+        button.isEnabled = true
+        button.addTarget(self, action: #selector(loginWithFaceIDButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -172,6 +188,17 @@ class LogInViewController: UIViewController {
         }
     }
     
+    @objc private func loginWithFaceIDButtonPressed() {
+        let authService = LocalAuthorizationService()
+        authService.authorizeIfPossible { [weak self] isSuccseeded in
+            if isSuccseeded {
+                DispatchQueue.main.async {
+                    self?.flowCoordinator?.goToProfile(user: User())
+                }
+            }
+        }
+    }
+    
     // MARK: Helpers
     // настраиваем layout
     private func setupLayout() {
@@ -191,8 +218,9 @@ class LogInViewController: UIViewController {
         // разделитель, password
         emailAndPassCommonContainer.addSubviews(separator, passwordContainer, passwordTextField)
         
-        // кнопка log in
+        // кнопка log in, FaceID
         contentView.addSubviews(loginButton)
+        contentView.addSubviews(loginWithFaceIDButton)
         
         let constraints = [
             
@@ -257,6 +285,12 @@ class LogInViewController: UIViewController {
             loginButton.leadingAnchor.constraint(equalTo: emailAndPassCommonContainer.leadingAnchor),
             loginButton.trailingAnchor.constraint(equalTo: emailAndPassCommonContainer.trailingAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            // кнопка FaceID
+            loginWithFaceIDButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 16),
+            loginWithFaceIDButton.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
+            loginWithFaceIDButton.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
+            loginWithFaceIDButton.heightAnchor.constraint(equalToConstant: 50),
         ]
         
         // активируем все констрейнты
