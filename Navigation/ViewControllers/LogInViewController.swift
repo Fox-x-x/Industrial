@@ -191,9 +191,15 @@ class LogInViewController: UIViewController {
     @objc private func loginWithFaceIDButtonPressed() {
         let authService = LocalAuthorizationService()
         authService.authorizeIfPossible { [weak self] isSuccseeded in
-            if isSuccseeded {
-                DispatchQueue.main.async {
-                    self?.flowCoordinator?.goToProfile(user: User())
+            if let self = self {
+                if isSuccseeded {
+                    DispatchQueue.main.async {
+                        self.flowCoordinator?.goToProfile(user: User())
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        handleApiError(error: .authError, vc: self)
+                    }
                 }
             }
         }
